@@ -1,16 +1,15 @@
-import { UsersSchema } from './userSchema.js'
-import connection from '../../connection.js'
+import { bcrypt_password } from '../../env.js'
+import { UsersSchema } from '../Schemas/userSchema.js'
+import connection from '../connection.js'
 import bcrypt from 'bcrypt'
 
 const usersModel = connection.model('Users', UsersSchema)
 
 export default class UsersMethods {
     addUser = async (name, age, email, username, password) => {
-        console.log((await this.#findUser('email', email)).password)
         if (!await this.#findUser('email', email) && !await this.#findUser('', username)) {
             try {
                 password = await bcrypt.hash(password + process.env.bcrypt_password, parseInt(process.env.salt_rounds))
-                console.log(password)
                 const user = new usersModel({
                     name, age, email, username, password
                 })
@@ -21,7 +20,6 @@ export default class UsersMethods {
                 return err
             }
         } else if (await this.#findUser('email', email)) {
-            console.log('no add')
             return 'user exists'
         }
         else if (await this.#findUser('', username)) {
@@ -40,7 +38,9 @@ export default class UsersMethods {
     }
     login = async (email, password) => {
         const user = await this.#findUser('email', email)
-        if (user && bcrypt.compareSync(password + process.env.bcrypt_password, user.password)) {
+        console.log(user)
+        console.log(user? bcrypt.compareSync(password + bcrypt_password, user.password): null)
+        if (user && bcrypt.compareSync(password + bcrypt_password, user.password)) {
             return 'login'
         } else {
             return 'wrong entry'
