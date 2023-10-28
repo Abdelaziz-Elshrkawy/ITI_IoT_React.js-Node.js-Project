@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import cors from 'cors'
-import UsersMethods from "./Database/models/users/usermodel.js";
+import UsersMethods from "./Database/models/users/userModel.js";
 dotenv.config();
 const app = express();
 app.use(express.json())
