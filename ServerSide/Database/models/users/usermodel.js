@@ -9,7 +9,7 @@ export default class UsersMethods {
         console.log((await this.#findUser('email', email)).password)
         if (!await this.#findUser('email', email) && !await this.#findUser('', username)) {
             try {
-                password = await bcrypt.hash(password, parseInt(process.env.salt_rounds))
+                password = await bcrypt.hash(password + process.env.bcrypt_password, parseInt(process.env.salt_rounds))
                 console.log(password)
                 const user = new usersModel({
                     name, age, email, username, password
@@ -29,7 +29,7 @@ export default class UsersMethods {
         }
 
     }
-    #findUser = (argName, arg) => {
+    #findUser = async (argName, arg) => {
         if (argName === 'email') {
             const email = arg
             return usersModel.findOne({ email }).exec()
@@ -40,5 +40,10 @@ export default class UsersMethods {
     }
     login = async (email, password) => {
         const user = await this.#findUser('email', email)
+        if (user && bcrypt.compareSync(password + process.env.bcrypt_password, user.password)) {
+            return 'login'
+        } else {
+            return 'wrong entry'
+        }
     }
 }

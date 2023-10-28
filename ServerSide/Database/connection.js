@@ -1,7 +1,5 @@
 import mongoose from 'mongoose'
-import dotenv from 'dotenv'
+import { mongo_uri_local } from '../env.js'
 
-dotenv.config()
-
-const connection = mongoose.createConnection(process.env.mongo_uri_local)
+const connection = mongoose.createConnection(mongo_uri_local)
 export default connection
