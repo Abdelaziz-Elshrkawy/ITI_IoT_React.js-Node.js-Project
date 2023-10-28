@@ -1,13 +1,15 @@
 import express from "express";
 import dotenv from "dotenv";
-
+import cors from 'cors'
+import UsersMethods from "./Database/models/users/usermodel.js";
 dotenv.config();
 const app = express();
 app.use(express.json())
 app.use(cors())
-
-app.get("/", async (req, res) => {
-    res.send('Hello World!')
+const users = new UsersMethods()
+app.post("/user", async (req, res) => {
+    const { name, age, email, username, password } = req.body
+    res.json(await users.addUser(name, age, email, username, password))
 });
 
 
