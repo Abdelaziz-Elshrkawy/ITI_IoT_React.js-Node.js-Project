@@ -1,9 +1,12 @@
+import TopBar from "./Topbar/TopBar";
 
 function App() {
   return (
-    <div className="App">
-Rythm
-    </div>
+    <>
+      <TopBar />
+
+    </>
+
   );
 }
 
