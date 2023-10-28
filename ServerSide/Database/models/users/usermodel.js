@@ -1,4 +1,4 @@
-import { UsersSchema } from './schema.js'
+import { UsersSchema } from './userSchema.js'
 import connection from '../../connection.js'
 import bcrypt from 'bcrypt'
 
