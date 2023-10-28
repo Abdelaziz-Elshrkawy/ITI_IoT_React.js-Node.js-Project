@@ -1,8 +1,10 @@
 import { Schema } from 'mongoose';
 
-export const ImageSchema = new Schema({
-    user: String,
+export const UserImageSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'Users',
+    },
+    contentType: String,
     data: Buffer,
-    contentType: String
-
 });

@@ -6,8 +6,4 @@ export const UsersSchema = new Schema({
     email: String,
     username: String,
     password: String,
-    image: {
-        data: Buffer,
-        contentType: String
-    }
 });

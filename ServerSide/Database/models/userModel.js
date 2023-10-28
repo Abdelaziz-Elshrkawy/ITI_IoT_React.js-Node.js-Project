@@ -3,9 +3,19 @@ import { UsersSchema } from '../Schemas/userSchema.js';
 import connection from '../connection.js';
 import bcrypt from 'bcrypt';
 
-const usersModel = connection.model('Users', UsersSchema);
-
 export default class UsersMethods {
+    #usersModel = connection.model('Users', UsersSchema);
+
+    #findUser = async (argName, arg) => {
+        if (argName === 'email') {
+            const email = arg;
+            return this.#usersModel.findOne({ email }).exec();
+        } else {
+            const username = arg;
+            return this.#usersModel.findOne({ username }).exec();
+        }
+    };
+
     addUser = async (name, age, email, username, password, image) => {
         if (
             !(await this.#findUser('email', email)) &&
@@ -16,13 +26,13 @@ export default class UsersMethods {
                     password + process.env.bcrypt_password,
                     parseInt(process.env.salt_rounds),
                 );
-                const user = new usersModel({
+                const user = new this.#usersModel({
                     name,
                     age,
                     email,
                     username,
                     password,
-                    image
+                    image,
                 });
                 await user.save();
                 return user;
@@ -36,15 +46,7 @@ export default class UsersMethods {
             return 'username exists';
         }
     };
-    #findUser = async (argName, arg) => {
-        if (argName === 'email') {
-            const email = arg;
-            return usersModel.findOne({ email }).exec();
-        } else {
-            const username = arg;
-            return usersModel.findOne({ username }).exec();
-        }
-    };
+
     login = async (email, password) => {
         const user = await this.#findUser('email', email);
         console.log(user);
