@@ -21,7 +21,15 @@ export default function
      </div>
      <p className="postDesc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
         Consequatur, quas ullam quidem culpa eos maxime earum architecto, 
-        iste ducimus nisi itaque labore officiis incidunt. Consectetur non ipsum maiores quibusdam in.</p>
+        iste ducimus nisi itaque labore officiis incidunt. Consectetur non ipsum maiores quibusdam in.
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        Consequatur, quas ullam quidem culpa eos maxime earum architecto, 
+        iste ducimus nisi itaque labore officiis incidunt. Consectetur non ipsum maiores quibusdam i
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        Consequatur, quas ullam quidem culpa eos maxime earum architecto, 
+        iste ducimus nisi itaque labore officiis incidunt. Consectetur non ipsum maiores quibusdam i
+        
+        </p>
     </div>
   )
 }
