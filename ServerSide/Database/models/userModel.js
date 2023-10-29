@@ -4,8 +4,8 @@ import connection from '../connection.js';
 import bcrypt from 'bcrypt';
 
 export default class UsersMethods {
-    #usersModel = connection.model('Users', UsersSchema);
-
+    modelName = 'Users';
+    #usersModel = connection.model(this.modelName, UsersSchema);
     #findUser = async (argName, arg) => {
         if (argName === 'email') {
             const email = arg;
@@ -26,7 +26,7 @@ export default class UsersMethods {
                     password + bcrypt_password,
                     parseInt(process.env.salt_rounds),
                 );
-                const user = new this.#usersModel({
+                const user = await this.#usersModel({
                     name,
                     age,
                     email,

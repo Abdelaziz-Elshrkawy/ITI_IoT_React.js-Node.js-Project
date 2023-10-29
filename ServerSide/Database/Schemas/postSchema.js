@@ -1,9 +1,9 @@
 import mongoose, { Schema } from 'mongoose';
 
-export const UsersSchema = new Schema({
+export const PostsSchema = new Schema({
     title: String,
     body: String,
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'Users',
     },

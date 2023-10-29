@@ -1,8 +1,11 @@
 import { ImageSchema } from '../Schemas/imagesSchema.js';
 import connection from '../connection.js';
 
-export default class UserImageMethods {
-    #imageModel = connection.model('user-images', ImageSchema('Users'));
+export default class ImageMethods {
+    #imageModel;
+    constructor(modelName, ref) {
+        this.#imageModel = connection.model(modelName, ImageSchema(ref));
+    }
 
     addImage = async (fkId, data, contentType) => {
         try {
