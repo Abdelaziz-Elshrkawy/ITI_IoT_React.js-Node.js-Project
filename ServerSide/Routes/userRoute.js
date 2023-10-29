@@ -2,6 +2,8 @@ import { Router } from 'express';
 import UsersMethods from '../Database/models/userModel.js';
 import multer, { memoryStorage } from 'multer';
 import UserImageMethods from '../Database/models/userImageModel.js';
+import jsonwebtoken from 'jsonwebtoken';
+import { jwt_secret } from '../env.js';
 const userRoute = new Router();
 const users = new UsersMethods();
 const userImage = new UserImageMethods();
@@ -34,12 +36,15 @@ userRoute.post(
 );
 
 userRoute.post('/login', async (req, res) => {
-    console.log('body ' + JSON.stringify(req.body));
     const { email, password } = req.body;
     const userLoginStatus = await users.login(email, password);
     console.log(userLoginStatus);
     if (typeof userLoginStatus === 'object') {
-        res.json(userLoginStatus);
+        res.json({
+            userLoginStatus,
+            token: userLoginStatus.user ?
+                createJWT(userLoginStatus.user._id, userLoginStatus.user.username) : null
+        });
     } else {
         res.status(404).send(userLoginStatus);
     }
@@ -59,4 +64,10 @@ userRoute.get('/img/:id', async (req, res) => {
         res.status(404).send('not found');
     }
 });
+
+
+const createJWT = (userId, username) => {
+    return jsonwebtoken.sign({ userId, username }, jwt_secret, { expiresIn: '7d' })
+}
+
 export default userRoute;
