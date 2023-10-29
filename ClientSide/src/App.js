@@ -14,13 +14,11 @@ import Settings from "./pages/settings/Settings";
 function App() {
   return (
     <>
-       <TopBar />
-       <Home />
-       <Settings/>
-       <Login />
-       <Register />
-     
-     
+      <TopBar />
+      <Home />
+      <Settings />
+      <Login />
+      <Register />
     </>
   );
 }
