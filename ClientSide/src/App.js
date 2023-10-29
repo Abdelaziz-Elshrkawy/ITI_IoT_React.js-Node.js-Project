@@ -1,11 +1,11 @@
 import TopBar from "./Topbar/TopBar";
-import Login from "./login/Login";
+import Register from "./Register/Register";
 
 function App() {
   return (
     <>
       <TopBar />
-      <Login />
+      <Register />
     </>
 
   );
