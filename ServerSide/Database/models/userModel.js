@@ -32,7 +32,6 @@ export default class UsersMethods {
                     email,
                     username,
                     password,
-                    image,
                 });
                 await user.save();
                 return user;

@@ -1,7 +1,7 @@
 import { Schema } from 'mongoose';
 
 export const UserImageSchema = new Schema({
-    user: {
+    userId: {
         type: Schema.Types.ObjectId,
         ref: 'Users',
     },

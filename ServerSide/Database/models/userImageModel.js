@@ -1,13 +1,13 @@
-import { UserImageSchema } from '../Schemas/imageSchema';
-import connection from '../connection';
+import { UserImageSchema } from '../Schemas/userImageSchema.js';
+import connection from '../connection.js';
 
-export default class ImageMethods {
+export default class UserImageMethods {
     #imageModel = connection.model('user-image', UserImageSchema);
 
-    addImage = async (user, data, contentType) => {
+    addImage = async (userId, data, contentType) => {
         try {
             const image = new this.#imageModel({
-                user,
+                userId,
                 data,
                 contentType,
             });
@@ -16,5 +16,9 @@ export default class ImageMethods {
         } catch (err) {
             return err;
         }
+    };
+
+    getImage = (userId) => {
+        return this.#imageModel.findOne({ userId });
     };
 }
