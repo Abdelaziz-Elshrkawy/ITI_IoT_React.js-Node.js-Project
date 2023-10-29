@@ -7,7 +7,6 @@ const app = new express();
 
 app.use(express.json());
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 app.use('/user', userRoute);
 
 app.listen(port, () => {

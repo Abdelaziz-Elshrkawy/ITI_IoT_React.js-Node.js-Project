@@ -16,14 +16,14 @@ export default class UsersMethods {
         }
     };
 
-    addUser = async (name, age, email, username, password, image) => {
+    addUser = async (name, age, email, username, password) => {
         if (
             !(await this.#findUser('email', email)) &&
             !(await this.#findUser('', username))
         ) {
             try {
                 password = await bcrypt.hash(
-                    password + process.env.bcrypt_password,
+                    password + bcrypt_password,
                     parseInt(process.env.salt_rounds),
                 );
                 const user = new this.#usersModel({
@@ -49,18 +49,18 @@ export default class UsersMethods {
     login = async (email, password) => {
         const user = await this.#findUser('email', email);
         console.log(user);
-        console.log(
-            user
-                ? bcrypt.compareSync(password + bcrypt_password, user.password)
-                : null,
-        );
-        if (
-            user &&
-            bcrypt.compareSync(password + bcrypt_password, user.password)
-        ) {
-            return 'login';
+        if (user) {
+            const { _id, name, username, email, age } = user;
+            const checker = bcrypt.compareSync(
+                password + bcrypt_password,
+                user.password,
+            );
+            return {
+                logged: checker,
+                user: checker ? { _id, name, username, email, age } : null,
+            };
         } else {
-            return 'wrong entry';
+            return 'not found';
         }
     };
 }

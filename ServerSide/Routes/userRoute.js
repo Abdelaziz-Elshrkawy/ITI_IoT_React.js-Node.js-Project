@@ -19,7 +19,7 @@ userRoute.post(
         );
         const responseStatus = () =>
             typeof userResponse === 'object' ? 'Success' : userResponse;
-        if (responseStatus() === 'Success') {
+        if (responseStatus() === 'Success' && req.file) {
             const imageResponse = await userImage.addImage(
                 userResponse._id,
                 req.file.buffer,
@@ -33,20 +33,30 @@ userRoute.post(
     },
 );
 
-userRoute.get('/login', async (req, res) => {
-    console.log(req.body);
+userRoute.post('/login', async (req, res) => {
+    console.log('body ' + JSON.stringify(req.body));
     const { email, password } = req.body;
-    res.json(await users.login(email, password));
+    const userLoginStatus = await users.login(email, password);
+    console.log(userLoginStatus);
+    if (typeof userLoginStatus === 'object') {
+        res.json(userLoginStatus);
+    } else {
+        res.status(404).send(userLoginStatus);
+    }
 });
 
 userRoute.get('/img/:id', async (req, res) => {
     const imageObject = await userImage.getImage(req.params.id);
-    res.send(
-        `<img src="data:${
-            imageObject.contentType
-        };base64,${imageObject.data.toString(
-            'base64',
-        )}" style="width: 400px;">`,
-    );
+    if (imageObject) {
+        console.log(imageObject.contentType);
+        res.send(
+            `data:${imageObject.contentType};base64,${imageObject.data.toString(
+                'base64',
+            )}`,
+        );
+    } else {
+        console.log(imageObject);
+        res.status(404).send('not found');
+    }
 });
 export default userRoute;
