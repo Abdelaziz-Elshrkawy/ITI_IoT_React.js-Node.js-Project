@@ -14,8 +14,15 @@ postRoute.post(
     imageProcessing('post-image'),
     async (req, res) => {
         const { title, body, userId } = req.body;
+        const file = req.file
         const postResponse = await posts.addPost(userId, title, body);
-        res.json(postResponse);
+        const imageResponse = await postImage.addImage(
+            postResponse._id,
+            file.buffer,
+            file.mimetype
+        )
+        postResponse.image = imageResponse
+        res.json({postResponse});
     },
 );
 
