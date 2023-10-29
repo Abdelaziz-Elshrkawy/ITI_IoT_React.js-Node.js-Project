@@ -5,13 +5,13 @@ export default function Login() {
     <div className='login'>
         <pan className="loginTitle">Login</pan>
         <form className="loginForm">
-        <lable>Email</lable>
+        <label>Email</label>
       <input className='loginInput' type="text" placeholder='Enter Your Email....'/>
-      <lable>Password</lable>
+      <label>Password</label>
       <input className='loginInput' type="password" placeholder='Enter Your Password....'/>
       <button className='loginButton'>Login</button>
         </form>
-        <button className='loginRegisterButton'>Rigister</button>
+        <button className='loginRegisterButton'>Register</button>
    
     </div>
   )
