@@ -13,24 +13,38 @@ postRoute.post(
     authorization,
     imageProcessing('post-image'),
     async (req, res) => {
-        const { title, body, userId } = req.body;
-        const file = req.file;
-        const postResponse = await posts.addPost(userId, title, body);
-        const imageObject = await postImage.addImage(
-            postResponse._id,
-            file.buffer,
-            file.mimetype,
-        );
-        postResponse.image = `data:${
-            imageObject.contentType
-        };base64,${imageObject.data.toString('base64')}`;
-        res.json({ response: postResponse });
+        try {
+            const { title, body, userId } = req.body;
+            const file = req.file;
+            const imageObject = await postImage.addImage(
+                file.buffer,
+                file.mimetype,
+            );
+            await posts.addPost(userId, imageObject._id, title, body);
+            res.json({ response: 'Success' });
+        } catch (err) {
+            res.json({ response: err.message });
+        }
     },
 );
 
 postRoute.get('/:userid?', authorization, async (req, res) => {
     const userId = req.params.userid;
-    res.json({ response: await posts.findPosts(userId) });
+    const postResponse = await posts.findPosts(userId);
+    const response = [];
+    for (let i = 0; i < postResponse.length; i++) {
+        response[i] = {
+            title: postResponse[i].title,
+            body: postResponse[i].body,
+            image: `data:${
+                postResponse[i].imageId.contentType
+            };base64,${postResponse[i].imageId.data.toString('base64')}`,
+        };
+        if (!userId) {
+            response[i].username = postResponse[i].userId.name;
+        }
+    }
+    res.json({ response });
 });
 
 postRoute.delete('/:userid/:postid', authorization, async (req, res) => {

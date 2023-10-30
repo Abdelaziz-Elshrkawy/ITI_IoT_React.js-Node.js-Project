@@ -4,19 +4,15 @@ import connection from '../connection.js';
 import bcrypt from 'bcrypt';
 
 export default class UsersMethods {
-    #usersModel
+    #usersModel;
     constructor(modelName) {
         this.#usersModel = connection.model(modelName, UsersSchema);
     }
-    findUser = async (email, populate) => {
-        if (populate) {
-            return this.#usersModel.findOne({ email });
-        } else {
-            return this.#usersModel.findOne({ email });
-        }
+    findUser = async (email) => {
+        return this.#usersModel.findOne({ email });
     };
 
-    addUser = async (name, age, email, username, password) => {
+    addUser = async (name, email, password, imageId) => {
         try {
             password = await bcrypt.hash(
                 password + bcrypt_password,
@@ -24,10 +20,9 @@ export default class UsersMethods {
             );
             const user = await this.#usersModel({
                 name,
-                age,
                 email,
-                username,
                 password,
+                imageId,
             });
             await user.save();
             return user;
@@ -40,15 +35,16 @@ export default class UsersMethods {
     login = async (email, InputPassword) => {
         console.log(`email:${email} password: ${InputPassword}`);
         const user = await this.findUser(email);
-        if (user) {
-            const { _id, name, username, email, age, password } = user;
+        console.log(user);
+        if (user && user._id) {
+            const { _id, name, email, password, imageId } = user;
             const checker = bcrypt.compareSync(
                 InputPassword + bcrypt_password,
                 password,
             );
             return {
                 logged: checker,
-                user: checker ? { _id, name, username, email, age } : null,
+                user: checker ? { _id, name, email, imageId } : null,
             };
         } else {
             return 'not found';

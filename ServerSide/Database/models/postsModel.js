@@ -2,12 +2,12 @@ import { PostsSchema } from '../Schemas/postSchema.js';
 import connection from '../connection.js';
 
 export default class PostsMethods {
-    #postsModel
+    #postsModel;
     constructor(modelName) {
         this.#postsModel = connection.model(modelName, PostsSchema);
     }
 
-    addPost = async (userId, title, body) => {
+    addPost = async (userId, imageId, title, body) => {
         try {
             const post = await this.#postsModel({
                 title,
@@ -16,7 +16,7 @@ export default class PostsMethods {
                 imageId,
             });
             await post.save();
-            return { post };
+            return post;
         } catch (err) {
             return err;
         }
@@ -25,9 +25,14 @@ export default class PostsMethods {
     findPosts = async (userId) => {
         try {
             if (userId) {
-                return await this.#postsModel.find({ userId });
+                return await this.#postsModel
+                    .find({ userId })
+                    .populate('imageId');
             } else {
-                return await this.#postsModel.find();
+                return await this.#postsModel
+                    .find()
+                    .populate('imageId')
+                    .populate('userId');
             }
         } catch (err) {
             return err;

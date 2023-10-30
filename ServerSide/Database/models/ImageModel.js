@@ -7,7 +7,7 @@ export default class ImageMethods {
         this.#imageModel = connection.model(modelName, ImageSchema);
     }
 
-    addImage = async ( data, contentType) => {
+    addImage = async (data, contentType) => {
         try {
             const image = new this.#imageModel({
                 data,
@@ -20,8 +20,8 @@ export default class ImageMethods {
         }
     };
 
-    getImage = (fkId) => {
-        return this.#imageModel.findOne({ fkId });
+    getImage = (_id) => {
+        return this.#imageModel.findOne({ _id });
     };
 
     deleteImage = (postId) => {
