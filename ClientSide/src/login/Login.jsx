@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+
 import './login.css'
 import { useState } from 'react'
-=======
 import "./login.css";
 import { Link } from "react-router-dom";
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
 
 export default function Login() {
 
@@ -47,23 +45,6 @@ export default function Login() {
     }
   }
   return (
-<<<<<<< HEAD
-    <div className='login'>
-        <span className="loginTitle">Login</span>
-        <form className="loginForm"  onSubmit={handleSubmit}>
-        <label>Email</label>
-      <input className='loginInput' type="text" placeholder='Enter Your Email....' onChange={(e) => SetEmail(e.target.value)}/>
-          {errors.email && <div className='error'>{errors.email}</div>}
-      <label>Password</label>
-      
-      
-      <input className='loginInput' type="password" placeholder='Enter Your Password....' onChange={(e) => SetPassword(e.target.value)}/>
-      {errors.password && <div className='error'>{errors.password}</div>}
-      <button className='loginButton'>Login</button>
-        </form>
-        <button className='loginRegisterButton'>Register</button>
-   
-=======
     <div className="login">
       <pan className="loginTitle">Login</pan>
       <form className="loginForm">
@@ -86,7 +67,6 @@ export default function Login() {
           Register
         </Link>
       </button>
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
     </div>
   );
 }

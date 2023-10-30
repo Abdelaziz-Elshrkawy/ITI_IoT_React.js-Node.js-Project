@@ -1,19 +1,6 @@
-<<<<<<< HEAD
 
 import TopBar from "./components/Topbar/TopBar";
-import Home from "./pages/home/Home";
-import Login from "./login/Login";
-import Single from "./pages/single/Single";
-import Write from "./pages/write/Write";
-import Register from './Register/Register'
 //local storage
-
-
-import Settings from "./pages/settings/Settings";
-
-
-=======
-import TopBar from "./components/Topbar/TopBar.jsx";
 import Home from "./pages/home/Home.jsx";
 import Register from "./Register/Register.jsx";
 import NotFound from "./NotFound.jsx";
@@ -22,22 +9,11 @@ import Single from "./pages/single/Single.jsx";
 import Write from "./pages/write/Write.jsx";
 import Settings from "./pages/settings/Settings.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
+
 
 function App() {
   const user = false;
   return (
-<<<<<<< HEAD
-    <>
-       <TopBar />
-        <Home />
-      {/* <Settings/> */}
-       {/* <Login /> */}
-       {/* <Register /> */}
-     
-     
-    </>
-=======
     <Router>
       <Routes>
         <Route exact path="/" element={<Home />} />
@@ -58,7 +34,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
   );
 }
 
