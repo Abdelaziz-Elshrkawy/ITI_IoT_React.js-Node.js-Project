@@ -4,57 +4,47 @@ import connection from '../connection.js';
 import bcrypt from 'bcrypt';
 
 export default class UsersMethods {
-    modelName = 'Users';
-    #usersModel = connection.model(this.modelName, UsersSchema);
-    #findUser = async (argName, arg) => {
-        if (argName === 'email') {
-            const email = arg;
-            return this.#usersModel.findOne({ email }).exec();
+    #usersModel
+    constructor(modelName) {
+        this.#usersModel = connection.model(modelName, UsersSchema);
+    }
+    findUser = async (email, populate) => {
+        if (populate) {
+            return this.#usersModel.findOne({ email });
         } else {
-            const username = arg;
-            return this.#usersModel.findOne({ username }).exec();
+            return this.#usersModel.findOne({ email });
         }
     };
 
     addUser = async (name, age, email, username, password) => {
-        if (
-            !(await this.#findUser('email', email)) &&
-            !(await this.#findUser('', username))
-        ) {
-            try {
-                password = await bcrypt.hash(
-                    password + bcrypt_password,
-                    parseInt(process.env.salt_rounds),
-                );
-                const user = await this.#usersModel({
-                    name,
-                    age,
-                    email,
-                    username,
-                    password,
-                });
-                await user.save();
-                return user;
-            } catch (err) {
-                console.log(err);
-                return err;
-            }
-        } else if (await this.#findUser('email', email)) {
-            return 'user exists';
-        } else if (await this.#findUser('', username)) {
-            return 'username exists';
+        try {
+            password = await bcrypt.hash(
+                password + bcrypt_password,
+                parseInt(process.env.salt_rounds),
+            );
+            const user = await this.#usersModel({
+                name,
+                age,
+                email,
+                username,
+                password,
+            });
+            await user.save();
+            return user;
+        } catch (err) {
+            console.log(err);
+            return err;
         }
     };
 
-    login = async (email, password) => {
-        console.log(`email:${email} password: ${password}`)
-        const user = await this.#findUser('email', email);
-        console.log(user);
+    login = async (email, InputPassword) => {
+        console.log(`email:${email} password: ${InputPassword}`);
+        const user = await this.findUser(email);
         if (user) {
-            const { _id, name, username, email, age } = user;
+            const { _id, name, username, email, age, password } = user;
             const checker = bcrypt.compareSync(
-                password + bcrypt_password,
-                user.password,
+                InputPassword + bcrypt_password,
+                password,
             );
             return {
                 logged: checker,

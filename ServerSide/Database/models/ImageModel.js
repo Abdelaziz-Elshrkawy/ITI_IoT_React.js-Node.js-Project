@@ -3,14 +3,13 @@ import connection from '../connection.js';
 
 export default class ImageMethods {
     #imageModel;
-    constructor(modelName, ref) {
-        this.#imageModel = connection.model(modelName, ImageSchema(ref));
+    constructor(modelName) {
+        this.#imageModel = connection.model(modelName, ImageSchema);
     }
 
-    addImage = async (fkId, data, contentType) => {
+    addImage = async ( data, contentType) => {
         try {
             const image = new this.#imageModel({
-                fkId,
                 data,
                 contentType,
             });
@@ -26,6 +25,6 @@ export default class ImageMethods {
     };
 
     deleteImage = (postId) => {
-        return this.#imageModel.deleteOne({ fkId: postId })
-    }
+        return this.#imageModel.deleteOne({ fkId: postId });
+    };
 }

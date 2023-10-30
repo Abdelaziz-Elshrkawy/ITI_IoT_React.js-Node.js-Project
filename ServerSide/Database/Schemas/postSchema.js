@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose';
+import { Schema } from 'mongoose';
 
 export const PostsSchema = new Schema({
     title: String,
@@ -6,5 +6,9 @@ export const PostsSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'Users',
+    },
+    imageId: {
+        type: Schema.Types.ObjectId,
+        ref: 'posts-image',
     },
 });

@@ -2,18 +2,21 @@ import { PostsSchema } from '../Schemas/postSchema.js';
 import connection from '../connection.js';
 
 export default class PostsMethods {
-    modelName = 'Posts';
-    #postsModel = connection.model(this.modelName, PostsSchema);
+    #postsModel
+    constructor(modelName) {
+        this.#postsModel = connection.model(modelName, PostsSchema);
+    }
 
     addPost = async (userId, title, body) => {
         try {
-            const post =  await this.#postsModel({
+            const post = await this.#postsModel({
                 title,
                 body,
                 userId,
+                imageId,
             });
-            await post.save()
-            return post;
+            await post.save();
+            return { post };
         } catch (err) {
             return err;
         }

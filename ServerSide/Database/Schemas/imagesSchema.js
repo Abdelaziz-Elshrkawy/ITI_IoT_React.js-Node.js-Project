@@ -1,12 +1,6 @@
 import { Schema } from 'mongoose';
 
-export const ImageSchema = (ref) => {
-    return new Schema({
-        fkId: {
-            type: Schema.Types.ObjectId,
-            ref,
-        },
-        contentType: String,
-        data: Buffer,
-    });
-};
+export const ImageSchema = new Schema({
+    contentType: String,
+    data: Buffer,
+});

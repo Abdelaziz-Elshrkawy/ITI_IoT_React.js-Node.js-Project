@@ -5,8 +5,8 @@ import authorization from './authorization.js';
 import imageProcessing from './helpers/imageProcessing.js';
 
 const postRoute = new Router();
-const posts = new PostsMethods();
-const postImage = new ImageMethods('posts-image', posts.modelName);
+const posts = new PostsMethods('Posts');
+const postImage = new ImageMethods('posts-image');
 
 postRoute.post(
     '/',
@@ -21,13 +21,10 @@ postRoute.post(
             file.buffer,
             file.mimetype,
         );
-        res.json({
-            response: {
-                postResponse, image: `data:${imageObject.contentType};base64,${imageObject.data.toString(
-                    'base64',
-                )}`
-            }
-        });
+        postResponse.image = `data:${
+            imageObject.contentType
+        };base64,${imageObject.data.toString('base64')}`;
+        res.json({ response: postResponse });
     },
 );
 
@@ -39,15 +36,19 @@ postRoute.get('/:userid?', authorization, async (req, res) => {
 postRoute.delete('/:userid/:postid', authorization, async (req, res) => {
     const { userid, postid } = req.params;
     const deleteResponse = await posts.deletePost(userid, postid);
-    console.log(deleteResponse)
-    const deletePostImage = await postImage.deleteImage(postid)
-    console.log(deletePostImage)
-    if (deleteResponse && deleteResponse.deletedCount === 1 && deletePostImage && deletePostImage.deletedCount === 1) {
+    console.log(deleteResponse);
+    const deletePostImage = await postImage.deleteImage(postid);
+    console.log(deletePostImage);
+    if (
+        deleteResponse &&
+        deleteResponse.deletedCount === 1 &&
+        deletePostImage &&
+        deletePostImage.deletedCount === 1
+    ) {
         res.json({ response: 'deleted' });
     } else {
-        res.json({ response: 'not found' })
+        res.json({ response: 'not found' });
     }
 });
 
 export default postRoute;
-
