@@ -1,6 +1,10 @@
 import './Register.css'
+<<<<<<< HEAD
 import { useState } from 'react'
 
+=======
+import { Link } from 'react-router-dom'
+>>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
 export default function Register() {
   const [name , SetName]= useState(' ');
   const [email , SetEmail]= useState(' ');
@@ -60,7 +64,10 @@ export default function Register() {
       {errors.password && <div className='error'>{errors.password}</div>}
       <button className='registerButton'>Register</button>
         </form>
-        <button className='loginButton'>Login</button>
+        <button className='loginButton'>
+        <Link to ="/Login" className='link'>Login</Link>
+        </button>
+        
    
     </div>
   )

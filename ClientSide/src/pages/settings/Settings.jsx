@@ -1,8 +1,10 @@
 import "./settings.css";
 import Sidebar from "../../components/sidebar/Sidebar";
+import TopBar from "../../components/Topbar/TopBar";
 
 export default function Settings() {
-  return (
+  return (<>
+    <TopBar/>
     <div className="settings">
       <div className="settingsWrapper">
         <div className="settingsTitle">
@@ -39,5 +41,6 @@ export default function Settings() {
       </div>
       <Sidebar />
     </div>
+    </>
   );
 }
