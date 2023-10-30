@@ -1,10 +1,9 @@
 import './Register.css'
-<<<<<<< HEAD
+
 import { useState } from 'react'
 
-=======
+
 import { Link } from 'react-router-dom'
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
 export default function Register() {
   const [name , SetName]= useState(' ');
   const [email , SetEmail]= useState(' ');

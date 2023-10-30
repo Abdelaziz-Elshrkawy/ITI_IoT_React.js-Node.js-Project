@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-import './login.css'
-import { useState } from 'react'
-=======
 import "./login.css";
 import { Link } from "react-router-dom";
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
+import { useState } from "react";
 
 export default function Login() {
 
@@ -38,7 +34,6 @@ export default function Login() {
 
   }
 
-
   const handleSubmit = (e) =>{
     e.preventDefault();
     
@@ -47,7 +42,7 @@ export default function Login() {
     }
   }
   return (
-<<<<<<< HEAD
+
     <div className='login'>
         <span className="loginTitle">Login</span>
         <form className="loginForm"  onSubmit={handleSubmit}>
@@ -62,31 +57,10 @@ export default function Login() {
       <button className='loginButton'>Login</button>
         </form>
         <button className='loginRegisterButton'>Register</button>
-   
-=======
-    <div className="login">
-      <pan className="loginTitle">Login</pan>
-      <form className="loginForm">
-        <label>Email</label>
-        <input
-          className="loginInput"
-          type="text"
-          placeholder="Enter Your Email...."
-        />
-        <label>Password</label>
-        <input
-          className="loginInput"
-          type="password"
-          placeholder="Enter Your Password...."
-        />
-        <button className="loginButton">Login</button>
-      </form>
-      <button className="loginRegisterButton">
         <Link to="/register" className="link">
           Register
         </Link>
-      </button>
->>>>>>> 95344a7ed97e2a9efa4da1bc5892a56b16b7b282
+
     </div>
   );
-}
+  }
