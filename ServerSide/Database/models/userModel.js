@@ -47,6 +47,7 @@ export default class UsersMethods {
     };
 
     login = async (email, password) => {
+        console.log(`email:${email} password: ${password}`)
         const user = await this.#findUser('email', email);
         console.log(user);
         if (user) {

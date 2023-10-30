@@ -4,10 +4,11 @@ import ImageMethods from '../Database/models/ImageModel.js';
 import jsonwebtoken from 'jsonwebtoken';
 import { jwt_secret } from '../env.js';
 import imageProcessing from './helpers/imageProcessing.js';
+import { createJWT } from './authorization.js';
 
 const userRoute = new Router();
 const users = new UsersMethods();
-const userImage = new ImageMethods('user-images', users.modelName);
+const userImage = new ImageMethods('users-image', users.modelName);
 
 userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
     const { name, age, email, username, password } = req.body;
@@ -15,7 +16,6 @@ userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
         name,
         age,
         email,
-        username,
         password,
     );
     const responseStatus = () =>
@@ -26,7 +26,6 @@ userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
             req.file.buffer,
             req.file.mimetype,
         );
-        console.log(imageResponse);
     }
     res.status(responseStatus() === 'Success' ? 201 : 208).json({
         response: responseStatus(),
@@ -35,6 +34,7 @@ userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
 
 userRoute.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log(`body: ${JSON.stringify(req.body)}`)
     const userLoginStatus = await users.login(email, password);
     console.log(userLoginStatus);
     if (typeof userLoginStatus === 'object') {
@@ -54,7 +54,7 @@ userRoute.get('/img/:id', async (req, res) => {
         res.send(
             `data:${imageObject.contentType};base64,${imageObject.data.toString(
                 'base64',
-            )}`,
+            )}`
         );
     } else {
         console.log(imageObject);
@@ -62,10 +62,5 @@ userRoute.get('/img/:id', async (req, res) => {
     }
 });
 
-const createJWT = (userId, username) => {
-    return jsonwebtoken.sign({ userId, username }, jwt_secret, {
-        expiresIn: '7d',
-    });
-};
 
 export default userRoute;

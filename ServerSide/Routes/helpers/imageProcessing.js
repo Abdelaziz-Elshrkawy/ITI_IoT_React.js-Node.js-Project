@@ -1,6 +1,6 @@
 import multer, { memoryStorage } from 'multer';
 
-const imageProcessing = (feildName) => {
-    return multer({ storage: memoryStorage() }).single(feildName);
+const imageProcessing = (fieldName) => {
+    return multer({ storage: memoryStorage() }).single(fieldName);
 };
 export default imageProcessing;

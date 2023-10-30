@@ -1,9 +1,8 @@
-import { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 export const UsersSchema = new Schema({
-    name: String,
     age: String || Number,
+    name: String,
     email: String,
-    username: String,
     password: String,
 });

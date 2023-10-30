@@ -6,7 +6,7 @@ import imageProcessing from './helpers/imageProcessing.js';
 
 const postRoute = new Router();
 const posts = new PostsMethods();
-const postImage = new ImageMethods('post-images', posts.modelName);
+const postImage = new ImageMethods('posts-image', posts.modelName);
 
 postRoute.post(
     '/',
@@ -14,29 +14,40 @@ postRoute.post(
     imageProcessing('post-image'),
     async (req, res) => {
         const { title, body, userId } = req.body;
-        const file = req.file
+        const file = req.file;
         const postResponse = await posts.addPost(userId, title, body);
-        const imageResponse = await postImage.addImage(
+        const imageObject = await postImage.addImage(
             postResponse._id,
             file.buffer,
-            file.mimetype
-        )
-        postResponse.image = imageResponse
-        res.json({postResponse});
+            file.mimetype,
+        );
+        res.json({
+            response: {
+                postResponse, image: `data:${imageObject.contentType};base64,${imageObject.data.toString(
+                    'base64',
+                )}`
+            }
+        });
     },
 );
 
-postRoute.get('/:userid?', async (req, res) => {
+postRoute.get('/:userid?', authorization, async (req, res) => {
     const userId = req.params.userid;
-    res.json(await posts.findPosts(userId));
+    res.json({ response: await posts.findPosts(userId) });
 });
 
-postRoute.delete('/del/:userid/:postid', authorization, async (req, res) => {
+postRoute.delete('/:userid/:postid', authorization, async (req, res) => {
     const { userid, postid } = req.params;
     const deleteResponse = await posts.deletePost(userid, postid);
-    if (deleteResponse && deleteResponse.deletedCount === 1) {
+    console.log(deleteResponse)
+    const deletePostImage = await postImage.deleteImage(postid)
+    console.log(deletePostImage)
+    if (deleteResponse && deleteResponse.deletedCount === 1 && deletePostImage && deletePostImage.deletedCount === 1) {
         res.json({ response: 'deleted' });
+    } else {
+        res.json({ response: 'not found' })
     }
 });
 
 export default postRoute;
+

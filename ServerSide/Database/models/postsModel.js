@@ -7,11 +7,13 @@ export default class PostsMethods {
 
     addPost = async (userId, title, body) => {
         try {
-            return await this.#postsModel({
+            const post =  await this.#postsModel({
                 title,
                 body,
                 userId,
             });
+            await post.save()
+            return post;
         } catch (err) {
             return err;
         }
@@ -32,7 +34,7 @@ export default class PostsMethods {
     deletePost = async (userId, PostId) => {
         try {
             return this.#postsModel.deleteOne({
-                $and: { userId, _id: PostId },
+                $and: [{ userId, _id: PostId }],
             });
         } catch (err) {
             return err;
