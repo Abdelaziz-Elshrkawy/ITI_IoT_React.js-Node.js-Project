@@ -1,9 +1,11 @@
+import TopBar from "../../components/Topbar/TopBar"
 import "./write.css"
 
 
 export default function Write() {
-  return (
-    <div className="write">
+  return (<>
+  <TopBar/>
+  <div className="write">
         <img className="writeImg"
         src="https://rukminim1.flixcart.com/image/850/1000/k0zlsi80/poster/d/g/n/large-nature-wallpaper-cscs009-original-imafknyqwyewf238.jpeg?q=90"
         alt=""
@@ -22,5 +24,7 @@ export default function Write() {
              <button className="writeSubmit">Publish</button>
          </form>
         </div>
+  </>
+
   )
 }

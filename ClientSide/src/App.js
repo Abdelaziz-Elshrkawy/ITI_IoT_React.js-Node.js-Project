@@ -9,10 +9,9 @@ import Settings from "./pages/settings/Settings.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
-  const user = true;
+  const user = false;
   return (
     <Router>
-      <TopBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/posts" element={<Home />} />
