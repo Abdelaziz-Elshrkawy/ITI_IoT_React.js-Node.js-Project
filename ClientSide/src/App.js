@@ -5,6 +5,7 @@ import Login from "./login/Login";
 import Single from "./pages/single/Single";
 import Write from "./pages/write/Write";
 import Register from './Register/Register'
+//local storage
 
 
 import Settings from "./pages/settings/Settings";
@@ -15,10 +16,10 @@ function App() {
   return (
     <>
        <TopBar />
-       <Home />
-       <Settings/>
-       <Login />
-       <Register />
+        <Home />
+      {/* <Settings/> */}
+       {/* <Login /> */}
+       {/* <Register /> */}
      
      
     </>
