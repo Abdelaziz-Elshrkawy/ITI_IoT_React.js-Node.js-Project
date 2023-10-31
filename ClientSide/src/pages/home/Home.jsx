@@ -11,9 +11,12 @@ export default function Home (){
     <div className='home'>
       <TopBar/>
        <Header />
-       <Sidebar />
+      <div id="SidebarPost">
+        <Sidebar />
        <Posts />
+</div>
     </div>
+  
     </>
   )
 }
