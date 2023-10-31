@@ -75,11 +75,11 @@ export default function Register() {
                 )}
                 <button className="registerButton">Register</button>
             </form>
-            <button className="loginButton">
+            {/* <button className="loginButton">
                 <Link to="/Login" className="link">
                     Login
                 </Link>
-            </button>
+            </button> */}
         </div>
     );
 }

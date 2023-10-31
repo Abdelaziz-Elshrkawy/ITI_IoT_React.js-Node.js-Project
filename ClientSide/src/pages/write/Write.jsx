@@ -8,7 +8,7 @@ export default function Write() {
             <div className="write">
                 <img
                     className="writeImg"
-                    src="https://rukminim1.flixcart.com/image/850/1000/k0zlsi80/poster/d/g/n/large-nature-wallpaper-cscs009-original-imafknyqwyewf238.jpeg?q=90"
+                    src="https://assets3.thrillist.com/v1/image/2875152/1200x630/flatten;crop_down;webp=auto;jpeg_quality=70"
                     alt=""
                 />
                 <form className="witeForm">

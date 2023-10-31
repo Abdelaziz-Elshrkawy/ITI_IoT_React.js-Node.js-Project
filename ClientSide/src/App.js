@@ -13,7 +13,7 @@ function App() {
      console.log(localStorage.getItem('auth'));
 
 
-    const user = false;
+    const user = true;
     return (
         <Router>
             <Routes>
