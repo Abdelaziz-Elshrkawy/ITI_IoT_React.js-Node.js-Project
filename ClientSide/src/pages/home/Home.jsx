@@ -13,7 +13,6 @@ export default function Home() {
     <div className='home'>
       <TopBar/>
        <Header />
-       <Sidebar />
        <Posts />
     </div>
     </>
