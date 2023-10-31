@@ -1,5 +1,8 @@
 
-import TopBar from "./components/Topbar/TopBar.jsx";
+
+
+import TopBar from "./components/Topbar/TopBar";
+//local storage
 import Home from "./pages/home/Home.jsx";
 import Register from "./Register/Register.jsx";
 import NotFound from "./NotFound.jsx";
@@ -13,6 +16,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 function App() {
   const user = false;
   return (
+
 
     <>
        <TopBar />
@@ -44,7 +48,8 @@ function App() {
   <Route path="*" element={<NotFound />} />
 </Routes>
 </Router>
-</>
+
+    </>
 
   );
 }

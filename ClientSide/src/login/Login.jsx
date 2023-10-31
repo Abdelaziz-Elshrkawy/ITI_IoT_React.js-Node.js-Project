@@ -1,6 +1,8 @@
+
+import { useState } from 'react'
 import "./login.css";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+
 
 export default function Login() {
 
@@ -43,6 +45,7 @@ export default function Login() {
   }
   return (
 
+
     <div className='login'>
         <span className="loginTitle">Login</span>
         <form className="loginForm"  onSubmit={handleSubmit}>
@@ -60,6 +63,7 @@ export default function Login() {
         <Link to="/register" className="link">
           Register
         </Link>
+
 
     </div>
   );
