@@ -17,7 +17,6 @@ export const createJWT = (userId, username) => {
 const authorization = (req, res, next) => {
     try {
         const token = req.headers.authorization?.split(' ');
-        console.log();
         if (token) {
             jsonwebtoken.verify(token[1], jwt_secret);
         } else {
