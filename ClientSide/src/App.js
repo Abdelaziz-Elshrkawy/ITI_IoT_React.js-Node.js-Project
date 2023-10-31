@@ -8,7 +8,7 @@ import Settings from './pages/settings/Settings.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-  const user = true;
+  const user = false;
   return (
     <Router>
       <Routes>
@@ -31,7 +31,6 @@ function App() {
       </Routes>
     </Router>
   );
-
 }
 
 export default App;

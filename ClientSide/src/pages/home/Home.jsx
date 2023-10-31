@@ -7,13 +7,12 @@ import TopBar from "../../components/Topbar/TopBar";
 export default function Home() {
   return (
     <>
-
-      <div className="home">
-        <TopBar />
-        <Header />
-        <Posts />
-      </div>
-
+    <div className='home'>
+      <TopBar/>
+       <Header />
+       <Sidebar />
+       <Posts />
+    </div>
     </>
   );
 }
