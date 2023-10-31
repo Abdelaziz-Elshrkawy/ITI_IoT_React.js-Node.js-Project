@@ -1,12 +1,11 @@
-import TopBar from "./components/Topbar/TopBar.jsx";
-import Home from "./pages/home/Home.jsx";
-import Register from "./Register/Register.jsx";
-import NotFound from "./NotFound.jsx";
-import Login from "./login/Login.jsx";
-import Single from "./pages/single/Single.jsx";
-import Write from "./pages/write/Write.jsx";
-import Settings from "./pages/settings/Settings.jsx";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from './pages/home/Home.jsx';
+import Register from './Register/Register.jsx';
+import NotFound from './NotFound.jsx';
+import Login from './login/Login.jsx';
+import Single from './pages/single/Single.jsx';
+import Write from './pages/write/Write.jsx';
+import Settings from './pages/settings/Settings.jsx';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   const user = true;
@@ -32,6 +31,7 @@ function App() {
       </Routes>
     </Router>
   );
+
 }
 
 export default App;
