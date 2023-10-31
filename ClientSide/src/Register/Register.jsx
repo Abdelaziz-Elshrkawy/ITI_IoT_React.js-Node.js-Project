@@ -36,7 +36,7 @@ export default function Register() {
         e.preventDefault();
 
         if (validateForm()) {
-            console.log('form submitted');
+            console.log('form submitted'); 
         }
     };
 
