@@ -1,7 +1,11 @@
 .posts{
+    background-color: #fdf3e1;
     flex: 9;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: 20px;
+}
+*{
+    background-color: #fdf3e1;
 }

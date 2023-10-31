@@ -5,29 +5,21 @@ export default function Post() {
         <div className="post">
             <img
                 className="postImg"
-                src="https://asset.gallup.com/p/POLL/5065b5a2-7818-4828-b79e-542acef7943a.jpg"
+                src="https://cdn.wallpapersafari.com/9/73/Vh4mRr.jpg"
                 alt="pr"
             />
             <div className="postInfo">
                 <div className="postCats">
-                    <span className="postCat">Music Life</span>
                 </div>
-                <span className="postTitle">Lorem ipsum dolor sit amet</span>
+                <span className="postTitle">Moon Magic</span>
                 <hr />
                 <span className="postDate">1 hour ago</span>
             </div>
             <p className="postDesc">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Consequatur, quas ullam quidem culpa eos maxime earum
-                architecto, iste ducimus nisi itaque labore officiis incidunt.
-                Consectetur non ipsum maiores quibusdam in. Lorem ipsum dolor,
-                sit amet consectetur adipisicing elit. Consequatur, quas ullam
-                quidem culpa eos maxime earum architecto, iste ducimus nisi
-                itaque labore officiis incidunt. Consectetur non ipsum maiores
-                quibusdam i Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Consequatur, quas ullam quidem culpa eos maxime earum
-                architecto, iste ducimus nisi itaque labore officiis incidunt.
-                Consectetur non ipsum maiores quibusdam i
+            The moon, our celestial companion,has long been a source of fascination and intrigue.Its phases, from crescent to full, have painted the night sky with timeless beauty and symbolism,<br/>
+            while its gravitational dance influences Earth's tides. Beyond myth and legend,scientific exploration has unveiled its rocky landscapes and ancient history.
+            The moon stands as a testament to the vast mysteries of our universe,an ever-present source of inspiration. As we gaze up at its silvered face,
+             we connect with a cosmic enigma that has been a guiding light for countless generations,igniting our imagination and nurturing our curiosity.
             </p>
         </div>
     );
