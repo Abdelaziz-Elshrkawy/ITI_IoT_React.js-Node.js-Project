@@ -20,12 +20,6 @@
     "prettier": "prettier --config .prettierrc --write \"./**/*.{jsx,js}\"",
     "lint": "eslint --config .eslintrc --fix \"./**/*.{js,jsx}\""
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
