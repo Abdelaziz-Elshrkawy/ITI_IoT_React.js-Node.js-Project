@@ -1,5 +1,3 @@
-import TopBar from './components/Topbar/TopBar';
-//local storage
 import Home from './pages/home/Home.jsx';
 import Register from './Register/Register.jsx';
 import NotFound from './NotFound.jsx';

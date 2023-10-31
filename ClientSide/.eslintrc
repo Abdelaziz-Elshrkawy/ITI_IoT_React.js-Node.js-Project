@@ -1,28 +1,36 @@
 {
-  "root": true,
-  "plugins": ["prettier"],
-  "extends": [
-    "eslint:recommended",
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": 2,
-    "no-use-before-define": [
-      "error",
-      {
-        "functions": true,
-        "classes": true
-      }
+    "root": true,
+    "plugins": ["prettier", "react", "import", "jsx-a11y"],
+    "extends": [
+        "prettier",
+        "eslint:recommended",
+        "plugin:import/errors",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended"
     ],
-    "no-var": "error",
-    "prefer-const": "error"
-  },
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 11
-  },
-  "env": {
-    "node": true,
-    "es6": true
-  }
+    "rules": {
+        "prettier/prettier": 2,
+        "no-use-before-define": [
+            "error",
+            {
+                "functions": true,
+                "classes": true
+            }
+        ],
+        "no-var": "error",
+        "prefer-const": "error"
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 11
+    },
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
 }
