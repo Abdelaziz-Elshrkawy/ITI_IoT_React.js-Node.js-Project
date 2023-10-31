@@ -9,51 +9,69 @@
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://images.rawpixel.com/image_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcm00NTItZi0wMTQteC5qcGc.jpg");
+    url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg");
   background-size: cover;
 }
+
 .loginTitle {
-  font-size: 50px;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #706233;
 }
+
 .loginForm {
+  width: 300px;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
+
 .loginForm > label {
   margin: 10px 0;
+  font-weight: bold;
+  color: #706233;
 }
 
 .loginInput {
   padding: 10px;
-  background-color: white;
-  border: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-top: 5px;
   border-radius: 5px;
 }
+
 .loginButton {
-  position: absolute;
-  margin-top: 450px;
-  left: 730px; 
+  margin-top: 20px;
   cursor: pointer;
-  background-color: #666;
+  background-color: #706233;
   border: none;
   color: white;
-  border-radius: 10px;
-  padding: 10px;
-  width: 75px;
-}
-.loginRegisterButton {
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color:#666;
-  cursor: pointer;
-  border: none;
-  padding: 10px;
-  color: white;
-  border-radius: 10px;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s;
 }
 
-.error{
-  color: red;
+.loginButton:hover {
+  background-color: #e1c78f;
+}
+
+.loginRegisterButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #b0926a;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.error {
+  color: #9a3b3b;
+  font-weight: bold;
+  margin-top: 5px;
 }
