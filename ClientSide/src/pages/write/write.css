@@ -3,8 +3,8 @@
 }
 .writeImg{
     margin-left: 150px;
-    width: 70vw;
-    height: 250px;
+    width: 85vw;
+    height: 300px;
     border-radius: 10px;
     object-fit: cover;
 }
@@ -36,18 +36,18 @@
     font-size: 30px;
     border: none;
     padding: 20px;
-    width: 70vm;
+    width: 90vw;
 }
 .writeInput:focus{
     outline: none;
 }
 .writeText{
     font-size: 20px;
-    height: 100vh;
+    height: 130vh;
 }
 .writeSubmit{
     position: absolute;
-    top: 450px;
+    top: 550px;
     right: 50px;
     color: white;
     background-color: teal;
