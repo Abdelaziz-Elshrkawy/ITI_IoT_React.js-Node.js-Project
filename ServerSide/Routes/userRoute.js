@@ -37,14 +37,16 @@ userRoute.post('/login', async (req, res) => {
         userLoginStatus.token = userLoginStatus.user
             ? createJWT(userLoginStatus.user._id, userLoginStatus.user.username)
             : null;
-        const { contentType, data } = await userImage.getImage(
-            userLoginStatus.user.imageId,
-        );
-        userLoginStatus.image =
-            contentType && userLoginStatus.logged
-                ? `data:${contentType};base64,${data.toString('base64')}`
-                : null;
-
+        userLoginStatus.image = null
+        if (userLoginStatus.logged) {
+            const { contentType, data } = await userImage.getImage(
+                userLoginStatus.user.imageId,
+            );
+            userLoginStatus.image =
+                contentType && userLoginStatus.logged
+                    ? `data:${contentType};base64,${data.toString('base64')}`
+                    : null;
+        }
         res.json(userLoginStatus);
     } else {
         res.status(404).send(userLoginStatus);
