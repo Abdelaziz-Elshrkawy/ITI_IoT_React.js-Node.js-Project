@@ -8,14 +8,6 @@ import Settings from './pages/settings/Settings.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
-<<<<<<< HEAD
-
-    localStorage.setItem('auth', '123456');
-     console.log(localStorage.getItem('auth'));
-
-
-=======
->>>>>>> 1549e31c15337395c80ab252fab1e33935e44bc6
     const user = false;
     return (
         <Router>
