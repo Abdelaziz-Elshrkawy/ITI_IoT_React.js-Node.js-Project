@@ -39,13 +39,31 @@ export default class PostsMethods {
         }
     };
 
-    deletePost = async (userId, PostId) => {
+    getPost = async (userId, PostId) => {
         try {
-            return this.#postsModel.deleteOne({
+            return await this.#postsModel.findOne({
                 $and: [{ userId, _id: PostId }],
-            });
+            })
         } catch (err) {
             return err;
         }
     };
+
+    updatePost = async (userId, PostId, title, body) => {
+        try {
+            const post = await this.#postsModel.findOne(
+                { $and: [{ userId, _id: PostId }] }
+            );
+            post.title = title
+            post.body = body
+            await post.save()
+            return post
+        } catch (err) {
+            return err;
+        }
+    };
+
+    deletePost = async (_id) => {
+        return await this.#postsModel.deleteOne(_id)
+    }
 }

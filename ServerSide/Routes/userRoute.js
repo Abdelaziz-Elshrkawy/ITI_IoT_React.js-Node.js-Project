@@ -8,7 +8,7 @@ const userRoute = new Router();
 const users = new UsersMethods('Users');
 const userImage = new ImageMethods('users-image');
 
-userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
+userRoute.post('/', imageProcessing('user_image'), async (req, res) => {
     try {
         const { name, email, password } = req.body;
         const { buffer, mimetype } = req.file;
@@ -19,7 +19,7 @@ userRoute.post('/', imageProcessing('user-image'), async (req, res) => {
             if (user) {
                 res.json({ response: 'Success' });
             } else {
-                throw new Error('some thing wrong happened');
+                throw new Error('something went wrong');
             }
         } else {
             res.json({ response: 'user exist' });
@@ -37,7 +37,7 @@ userRoute.post('/login', async (req, res) => {
         userLoginStatus.token = userLoginStatus.user
             ? createJWT(userLoginStatus.user._id, userLoginStatus.user.username)
             : null;
-        userLoginStatus.image = null
+        userLoginStatus.image = null;
         if (userLoginStatus.logged) {
             const { contentType, data } = await userImage.getImage(
                 userLoginStatus.user.imageId,
@@ -52,5 +52,12 @@ userRoute.post('/login', async (req, res) => {
         res.status(404).send(userLoginStatus);
     }
 });
+
+userRoute.put('/:userid', async (req, res) => {
+    const { userid } = req.params
+    const { name, password } = req.body
+    const user = await users.updateUser(userid, name, password)
+    res.json({ user })
+})
 
 export default userRoute;

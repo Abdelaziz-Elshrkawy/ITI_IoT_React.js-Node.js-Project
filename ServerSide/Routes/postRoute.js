@@ -11,7 +11,7 @@ const postImage = new ImageMethods('posts-image');
 postRoute.post(
     '/',
     authorization,
-    imageProcessing('post-image'),
+    imageProcessing('post_image'),
     async (req, res) => {
         try {
             const { title, body, userId } = req.body;
@@ -36,9 +36,8 @@ postRoute.get('/:userid?', authorization, async (req, res) => {
         response[i] = {
             title: postResponse[i].title,
             body: postResponse[i].body,
-            image: `data:${
-                postResponse[i].imageId.contentType
-            };base64,${postResponse[i].imageId.data.toString('base64')}`,
+            image: `data:${postResponse[i].imageId.contentType
+                };base64,${postResponse[i].imageId.data.toString('base64')}`,
         };
         if (!userId) {
             response[i].username = postResponse[i].userId.name;
@@ -49,19 +48,33 @@ postRoute.get('/:userid?', authorization, async (req, res) => {
 
 postRoute.delete('/:userid/:postid', authorization, async (req, res) => {
     const { userid, postid } = req.params;
-    const deleteResponse = await posts.deletePost(userid, postid);
-    console.log(deleteResponse);
-    const deletePostImage = await postImage.deleteImage(postid);
-    console.log(deletePostImage);
+    const post = await posts.getPost(userid, postid);
+    const deleteImage = await postImage.deleteImage(post.imageId)
+    console.log(post.imageId)
+    const deletePost = posts.deletePost(post._id)
+    console.log(`${JSON.stringify(deleteImage)} ::: ${deletePost}`)
     if (
-        deleteResponse &&
-        deleteResponse.deletedCount === 1 &&
-        deletePostImage &&
-        deletePostImage.deletedCount === 1
+        post &&
+        post.deletedCount === 1
     ) {
         res.json({ response: 'deleted' });
     } else {
         res.json({ response: 'not found' });
+    }
+});
+
+postRoute.put('/:userid/:postid', authorization, async (req, res) => {
+    try {
+        const { title, body } = req.body;
+        const { userid, postid } = req.params;
+        const post = await posts.updatePost(userid, postid, title, body);
+        if (post.message) {
+            res.json({ response: post.message })
+        } else {
+            res.json({ response: 'updated' })
+        }
+    } catch (err) {
+        res.json({ response: err })
     }
 });
 

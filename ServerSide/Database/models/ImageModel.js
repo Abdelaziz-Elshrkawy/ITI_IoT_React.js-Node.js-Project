@@ -24,7 +24,7 @@ export default class ImageMethods {
         return this.#imageModel.findOne({ _id });
     };
 
-    deleteImage = (postId) => {
-        return this.#imageModel.deleteOne({ fkId: postId });
+    deleteImage = (_id) => {
+        return this.#imageModel.deleteOne({ _id });
     };
 }
