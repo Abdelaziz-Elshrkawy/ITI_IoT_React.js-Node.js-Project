@@ -12,46 +12,72 @@
     url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg");
   background-size: cover;
 }
+
 .registerTitle {
-  font-size: 50px;
+  font-size: 2rem; 
+  margin-bottom: 20px; 
+  font-weight: bold; 
+  color: #333; 
 }
+
 .registerForm {
+  width: 300px; 
   margin-top: 20px;
   display: flex;
   flex-direction: column;
 }
+
+
 .registerForm > label {
   margin: 10px 0;
+  font-weight: bold;
+  color: #555;
 }
+
 
 .registerInput {
   padding: 10px;
-  background-color: white;
-  border: none;
-  margin-top: px;
+  background-color: #fff; /* Use a more neutral background color */
+  border: 1px solid #ccc; /* Add a subtle border for input fields */
+  margin-top: 5px; /* Adjust the top margin for spacing */
   border-radius: 5px;
 }
+
+/* Style the registration button */
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #666;
+  background-color: #007bff; /* Use a more distinctive color */
   border: none;
   color: white;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 5px; /* Slightly reduce border radius */
+  padding: 10px 20px; /* Add horizontal padding for better clickability */
+  font-weight: bold; /* Make the text bold for emphasis */
+  transition: background-color 0.3s; /* Add a smooth transition */
 }
+
+.registerButton:hover {
+  background-color: #0056b3; /* Change color on hover for interactivity */
+}
+
+/* Style the login button */
 .loginButton {
   position: absolute;
   top: 60px;
   right: 20px;
-  background-color: #666;
+  background-color: #007bff;
   cursor: pointer;
   border: none;
-  padding: 10px;
+  padding: 10px 20px;
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
-.error{
-  color : red;
+/* Style error messages */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px; /* Add some spacing below error messages */
 }
+
