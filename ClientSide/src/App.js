@@ -12,11 +12,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 
 function App() {
+  localStorage.setItem('auth', '123456')
+  console.log(localStorage.getItem('auth'))
   const user = false;
   return (
     <Router>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={user ? <Home /> : <Login/>} />
         <Route exact path="/posts" element={<Home />} />
         <Route
           exact
@@ -25,7 +27,7 @@ function App() {
         />
         <Route exact path="/login" element={user ? <Home /> : <Login />} />
         <Route exact path="/post/:id" element={<Single />} />
-        <Route exact path="/write" element={user ? <Write /> : <Register />} />
+        <Route exact path="/write" element={user ? <Write /> : <Login />} />
         <Route
           exact
           path="/settings"

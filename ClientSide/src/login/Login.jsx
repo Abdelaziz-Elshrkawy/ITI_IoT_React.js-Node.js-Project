@@ -46,7 +46,7 @@ export default function Login() {
   }
   return (
     <div className="login">
-      <pan className="loginTitle">Login</pan>
+      <span className="loginTitle">Login</span>
       <form className="loginForm">
         <label>Email</label>
         <input
