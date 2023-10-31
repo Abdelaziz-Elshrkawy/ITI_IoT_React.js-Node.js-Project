@@ -1,7 +1,8 @@
 .top {
   width: 100%;
   height: 50px;
-  background-color: white;
+  color:#706233 ;
+  background-color: #FAE7C9;
   position: sticky;
   top: 0;
   display: flex;
@@ -22,7 +23,7 @@
 .topIcon {
   font-size: 20px;
   margin-right: 10px;
-  color: #444;
+  color: #706233;
   cursor: pointer;
 }
 .topImg {
@@ -47,7 +48,7 @@
 
 .topSearchIcon{
     font-size: 18px;
-    color:#666;
+    color:#706233;
     cursor: pointer;
     margin-left: 15px;
 
