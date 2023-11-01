@@ -1,34 +1,21 @@
 import './post.css';
 
-export default function Post() {
+export default function Post({ title, body, src, dateData, username }) {
+    const date = dateData.split("T")[0];
+    console.log(dateData)
+    const time = dateData.split("T")[1].split(".")[0].split(':');
+  const amPmCheck = time[0] > 12
     return (
-        <div className="post">
-            <img
-                className="postImg"
-                src="https://asset.gallup.com/p/POLL/5065b5a2-7818-4828-b79e-542acef7943a.jpg"
-                alt="pr"
-            />
-            <div className="postInfo">
-                <div className="postCats">
-                    <span className="postCat">Music Life</span>
-                </div>
-                <span className="postTitle">Lorem ipsum dolor sit amet</span>
-                <hr />
-                <span className="postDate">1 hour ago</span>
-            </div>
-            <p className="postDesc">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Consequatur, quas ullam quidem culpa eos maxime earum
-                architecto, iste ducimus nisi itaque labore officiis incidunt.
-                Consectetur non ipsum maiores quibusdam in. Lorem ipsum dolor,
-                sit amet consectetur adipisicing elit. Consequatur, quas ullam
-                quidem culpa eos maxime earum architecto, iste ducimus nisi
-                itaque labore officiis incidunt. Consectetur non ipsum maiores
-                quibusdam i Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Consequatur, quas ullam quidem culpa eos maxime earum
-                architecto, iste ducimus nisi itaque labore officiis incidunt.
-                Consectetur non ipsum maiores quibusdam i
-            </p>
+      <div className="post">
+        <img className="postImg" src={src} alt="pr" />
+        <div className="postInfo">
+          <span className="postTitle">{title}</span>
+          <hr />
+          <span className="postDate">{`Written by: ${username} - on: ${date} - ${
+            amPmCheck ? time[0] - 12 : time[0]
+          }:${time[1]} ${amPmCheck ? 'PM' : 'AM'}`}</span>
         </div>
+        <p className="postDesc">{body}</p>
+      </div>
     );
 }

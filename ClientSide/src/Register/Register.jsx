@@ -1,14 +1,19 @@
 import './Register.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { signUp } from '../Redux/userSlice';
 
 export default function Register() {
-  const [name, setName] = useState(' ');
-  const [email, setEmail] = useState(' ');
-  const [password, setPassword] = useState(' ');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [profilePicture, setProfilePicture] = useState(null); // Add profilePicture state
+  const dispatch = useDispatch()
   const [errors, setErrors] = useState({});
-
+  const handleSignUp = () => {
+  dispatch(signUp({name, email, password}));
+}
   const validateForm = () => {
     let isValid = true;
     const newErrors = {};
@@ -53,45 +58,43 @@ export default function Register() {
   };
 
     return (
-        <div className="register">
-            <span className="registerTitle">Register</span>
-            <form className="registerForm" onSubmit={handleSubmit}>
-                <lable>Name</lable>
-                <input
-                    className="registerInput"
-                    type="text"
-                    value={name}
-                    placeholder="Enter Your Name...."
-                    onChange={(e) => SetName(e.target.value)}
-                />
-                {errors.name && <div className="error">{errors.name}</div>}
-                <lable>Email</lable>
-                <input
-                    className="registerInput"
-                    type="text"
-                    value={email}
-                    placeholder="Enter Your Email...."
-                    onChange={(e) => SetEmail(e.target.value)}
-                />
-                {errors.email && <div className="error">{errors.email}</div>}
-                <lable>Password</lable>
-                <input
-                    className="registerInput"
-                    type="password"
-                    value={password}
-                    placeholder="Enter Your Password...."
-                    onChange={(e) => SetPassword(e.target.value)}
-                />
-                {errors.password && (
-                    <div className="error">{errors.password}</div>
-                )}
-                <button className="registerButton">Register</button>
-            </form>
-            <button className="loginButton">
-                <Link to="/Login" className="link">
-                    Login
-                </Link>
-            </button>
-        </div>
+      <div className="register">
+        <span className="registerTitle">Register</span>
+        <form className="registerForm" onSubmit={handleSubmit}>
+          <label>Name</label>
+          <input
+            className="registerInput"
+            type="text"
+            value={name}
+            placeholder="Enter Your Name...."
+            onChange={(e) => setName(e.target.value)}
+          />
+          {errors.name && <div className="error">{errors.name}</div>}
+          <label>Email</label>
+          <input
+            className="registerInput"
+            type="text"
+            value={email}
+            placeholder="Enter Your Email...."
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          {errors.email && <div className="error">{errors.email}</div>}
+          <label>Password</label>
+          <input
+            className="registerInput"
+            type="password"
+            value={password}
+            placeholder="Enter Your Password...."
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {errors.password && <div className="error">{errors.password}</div>}
+          <button className="registerButton">Register</button>
+        </form>
+        <button onClick={handleSignUp} className="loginButton">
+          <Link to="/Login" className="link">
+            Login
+          </Link>
+        </button>
+      </div>
     );
 }
