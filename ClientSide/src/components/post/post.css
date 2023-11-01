@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .post{
     width: 80%;
     margin: 0 25px 100px 25px;
@@ -9,44 +10,79 @@
     border-radius: 7px;
 }
 .postInfo{
+=======
+.post {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    padding: 20px;
+    color: #706233;
+    background-color: #fdf3e1; /* Add a light background color */
+    border: 1px solid #bda777; /* Add a subtle border */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+>>>>>>> refs/remotes/origin/client
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.postCat{
+  }
+  
+  .postImg {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px; /* Slightly increase border radius */
+  }
+  
+  .postInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px; /* Increase top margin for spacing */
+  }
+  
+  .postCat {
     font-family: "Varela Round", sans-serif;
     font-size: 15px;
-    color: #be9656;
+    color: #706233; /* Update the color */
     line-height: 20px;
-    margin-top: 15px;
-    margin-right: 10px;
+    margin-top: 10px; /* Reduce top margin for tighter spacing */
     cursor: pointer;
-}
-.postTitle{
-    font-family: 'josefin Sans' , sans-serif;
-    font-size: 24px;
-    font-weight: 700;
-    margin-top: 15px;
-    cursor: pointer;
-}
-.postDate{
+  }
+  
+  
+  .postDate {
     font-family: "Lora", serif;
     font-style: italic;
+<<<<<<< HEAD
     font-size: 13px;
     color:#999;
     margin-top: 15px;
 }
 .postDesc{
 
+=======
+    font-size: 14px; /* Slightly increase font size */
+    color: #999;
+    margin-top: 10px; /* Reduce top margin for tighter spacing */
+  }
+  
+  .postDesc {
+>>>>>>> refs/remotes/origin/client
     font-family: "Varela Round", sans-serif;
-    font-size: 14px;
-    color: #444;
-    line-height: 24px;
+    font-size: 16px;
+    color: #706233;
+    line-height: 26px; 
     margin-top: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+<<<<<<< HEAD
     text-align: center;
 }
+=======
+  }
+  
+>>>>>>> refs/remotes/origin/client

@@ -2,3 +2,8 @@
     display: flex;
 }
 
+.thoughts{
+    color: #706233; 
+    font-size: 35px;
+    margin:20px 45px ;
+  }

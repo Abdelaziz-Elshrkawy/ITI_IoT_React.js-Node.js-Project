@@ -40,7 +40,7 @@ export default function TopBar() {
                 {user ? (
                     <img
                         className="topImg"
-                        src="https://www.katebackdrop.com/cdn/shop/articles/Photo_by_David_Werbrouck_on_Unsplash.jpg?v=1665711487"
+                        src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/drums-vintage-retro-music-circle-icon-kevin-garbes.jpg"
                         alt=""
                     ></img>
                 ) : (
