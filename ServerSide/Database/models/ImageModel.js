@@ -7,11 +7,10 @@ export default class ImageMethods {
         this.#imageModel = connection.model(modelName, ImageSchema);
     }
 
-    addImage = async (data, contentType) => {
+    addImage = async (data) => {
         try {
             const image = new this.#imageModel({
-                data,
-                contentType,
+                data
             });
             await image.save();
             return image;
