@@ -4,6 +4,9 @@
 
 .thoughts{
     color: #706233; 
-    font-size: 35px;
-    margin:20px 45px ;
+    font-size: 25px;
+    margin:30px 60px ;
+  }
+  .home{
+    background-color: #fdf3e1;
   }
