@@ -20,7 +20,7 @@ const authorization = (req, res, next) => {
         if (token) {
             jsonwebtoken.verify(token[1], jwt_secret);
         } else {
-            throw new Error();
+            throw new Error('Something went wrong');
         }
         next();
     } catch (err) {

@@ -1,8 +1,7 @@
 import { Router } from 'express';
 import UsersMethods from '../Database/models/userModel.js';
 import ImageMethods from '../Database/models/ImageModel.js';
-import imageProcessing from './helpers/imageProcessing.js';
-import { createJWT } from './authorization.js';
+import authorization, { createJWT } from './authorization.js';
 
 const userRoute = new Router();
 const users = new UsersMethods('Users');
@@ -57,5 +56,7 @@ userRoute.put('/:userid', async (req, res) => {
     const user = await users.updateUser(userid, name, password);
     res.json({ user });
 });
+
+userRoute.get('/auth', authorization);
 
 export default userRoute;

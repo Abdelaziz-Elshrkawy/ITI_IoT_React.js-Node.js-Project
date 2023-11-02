@@ -2,18 +2,15 @@ import { Router } from 'express';
 import ImageMethods from '../Database/models/ImageModel.js';
 import PostsMethods from '../Database/models/postsModel.js';
 import authorization from './authorization.js';
-import imageProcessing from './helpers/imageProcessing.js';
 
 const postRoute = new Router();
 const posts = new PostsMethods('Posts');
-const postImage = new ImageMethods('posts-image');
+const postImageMethods = new ImageMethods('posts-image');
 
 postRoute.post('/', authorization, async (req, res) => {
     try {
-        const { title, body, userId, profilePicture } = req.body;
-        const imageObject = await postImage.addImage(
-            profilePicture
-        );
+        const { title, body, userId, postImage } = req.body;
+        const imageObject = await postImageMethods.addImage(postImage);
         await posts.addPost(userId, imageObject._id, title, body);
         res.json({ response: 'Success' });
     } catch (err) {
@@ -54,7 +51,7 @@ postRoute.get(
 postRoute.delete('/:userid/:postid', authorization, async (req, res) => {
     const { userid, postid } = req.params;
     const post = await posts.getPost(userid, postid);
-    const deleteImage = await postImage.deleteImage(post.imageId);
+    const deleteImage = await postImageMethods.deleteImage(post.imageId);
     console.log(post.imageId);
     const deletePost = posts.deletePost(post._id);
     console.log(`${JSON.stringify(deleteImage)} ::: ${deletePost}`);
