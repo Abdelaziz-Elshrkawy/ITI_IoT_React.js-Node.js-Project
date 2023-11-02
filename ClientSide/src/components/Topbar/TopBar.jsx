@@ -34,11 +34,6 @@ export default function TopBar() {
               ABOUT
             </Link>
           </li>
-          {/* <li className="topListItem">
-                        <Link to="/" className="link">
-                            CONTACT
-                        </Link>
-                    </li>  */}
           <li className="topListItem">
             <Link to="/write" className="link">
               WRITE

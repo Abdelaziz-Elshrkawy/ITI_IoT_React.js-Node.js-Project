@@ -1,6 +1,6 @@
 .header {
   position: relative;
-  background-image: url("https://www.everwallpaper.co.uk/cdn/shop/collections/soldiers-negotiation-wall-mural-acient--wallpaper-living-room.jpg?v=1660112852");
+  background-image: url("https://img.freepik.com/free-photo/autumn-leaf-falling-revealing-intricate-leaf-vein-generated-by-ai_188544-9869.jpg?size=626&ext=jpg&ga=GA1.1.1518270500.1698796800&semt=ais");
   background-size: cover;
   background-position: center;
   height: 450px;
@@ -8,8 +8,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #706233; 
+  color: #E1C78F;
   font-family: "Lora", serif;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8); /* Add shadow to the image */
+  position: relative;
+}
+
+/* Add the gradient overlay */
+.header::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(182, 160, 62, 0.212), rgba(0,0,0,0.6)); /* Adjust the gradient colors and opacity as needed */
 }
 
 .headerTitles {
@@ -23,7 +36,6 @@
   margin-top: 10px; /* Add some top margin for spacing */
 }
 
-
 .headerTitleLg {
   font-size: 80px;
   margin-top: 10px;
@@ -32,4 +44,5 @@
 
 .headerImg {
   display: none; /* Hide the image on smaller screens */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.8); /* Add shadow to the image */
 }
