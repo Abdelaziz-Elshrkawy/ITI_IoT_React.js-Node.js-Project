@@ -6,9 +6,11 @@ import Single from './pages/single/Single.jsx';
 import Write from './pages/write/Write.jsx';
 import Settings from './pages/settings/Settings.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function App() {
-    const user = true;
+    let user = JSON.parse(localStorage.getItem('current_user'));
+    console.log(`user${user}`)
     return (
         <Router>
             <Routes>
@@ -28,7 +30,7 @@ function App() {
                 <Route
                     exact
                     path="/write"
-                    element={user ? <Write /> : <Login />}
+                    element={user && user.logged ? <Write /> : <Login />}
                 />
                 <Route
                     exact

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
-export const getPosts = createAsyncThunk('post/get', async (_args, thunAPI) => {
+export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) => {
     const {rejectWithValue}  = thunAPI
     try {
         const data = await fetch('http://localhost:3500/post')
@@ -9,24 +9,39 @@ export const getPosts = createAsyncThunk('post/get', async (_args, thunAPI) => {
         return rejectWithValue(err.message)
     }
 })
-
+export const addPost = createAsyncThunk('/user/auth', async ({token, data}, thunkAPI) => {
+    try {
+        const newPost = await fetch('http://localhost:3500/post', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                authorization: 'Bearer '+token
+            },
+            body: JSON.stringify(data)
+        })
+        return await newPost.json()
+    } catch (err) {
+        thunkAPI.rejectWithValue(err)
+    }
+})
 const postSlice = createSlice({
     name: 'post',
     initialState: {
-        loading: true,
-        posts: null
+        allPosts: null,
+        newPost: {
+            newPostResponse: null,
+            newPostStatus: false
+        }
     },
     reducer: {},
     extraReducers: {
-        [getPosts.pending]: (stat, action) => {
-        },
         [getPosts.fulfilled]: (stat, action) => {
-            stat.loading = false
-            stat.posts = action.payload
-            console.l
+            stat.allPosts = action.payload
         },
-        [getPosts.rejected]: (stat, action) => {
-        },
+        [addPost.fulfilled]: (stat, action) => {
+            stat.newPost.newPostResponse = action.payload
+            stat.newPost.newPostStatus = true
+        }
     }
 })
 

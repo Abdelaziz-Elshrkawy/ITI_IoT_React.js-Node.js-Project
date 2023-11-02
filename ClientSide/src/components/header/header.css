@@ -13,7 +13,9 @@
 }
 
 .headerTitles {
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add text shadow for readability */
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+  filter: drop-shadow(0 0 10px);
+  border-radius: 15px; /* Add text shadow for readability */
 }
 
 .headerTitleSm {
@@ -24,7 +26,8 @@
 
 .headerTitleLg {
   font-size: 80px;
-  margin-top: 10px; /* Add some top margin for spacing */
+  margin-top: 10px;
+  border-radius: 15px; /* Add some top margin for spacing */
 }
 
 .headerImg {

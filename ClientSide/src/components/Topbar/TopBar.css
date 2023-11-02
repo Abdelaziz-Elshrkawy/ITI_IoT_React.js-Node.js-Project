@@ -1,7 +1,7 @@
 .top {
   width: 100%;
   height: 50px;
-  color:#706233 ;
+  color: #706233;
   background-color: #fdf3e1;
   position: sticky;
   top: 0;
@@ -18,9 +18,12 @@
   align-items: center;
   justify-content: center;
 }
+#logo{
+  height: 50px;
+}
 .topCenter {
-    flex: 6;
-  }
+  flex: 6;
+}
 .topIcon {
   font-size: 20px;
   margin-right: 10px;
@@ -33,25 +36,54 @@
   border-radius: 50%;
   object-fit: cover;
 }
-.topList{
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+.topList {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.topListItem{
-    margin-right: 20px;
-    font-size: 18px;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-.topSearchIcon{
-    font-size: 18px;
-    color:#706233;
-    cursor: pointer;
-    margin-left: 15px;
-
+.topListItem {
+  margin-right: 20px;
+  font-size: 18px;
+  font-weight: 300;
+  cursor: pointer;
 }
 
+.topSearchIcon {
+  font-size: 18px;
+  color: #706233;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.logout-cont {
+  display: none;
+  position: absolute;
+  top: 40px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  margin:0;
+}
+
+.logout-cont .logout {
+  float: none;
+  color: black;
+  padding: 8px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  cursor: pointer;
+}
+.logout-cont:hover .logout{
+  background-color: #dddddd;
+}
+
+.img-cont:hover ~ .logout-cont{
+  display: block;
+}
+
+.logout-cont:hover{
+  display: block;
+}

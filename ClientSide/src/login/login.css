@@ -57,10 +57,9 @@
   background-color: #e1c78f;
 }
 
-.loginRegisterButton {
+.loginRegisterButton,
+.backToHome {
   position: absolute;
-  top: 20px;
-  right: 20px;
   background-color: #b0926a;
   cursor: pointer;
   border: none;
@@ -69,9 +68,19 @@
   border-radius: 5px;
   font-weight: bold;
 }
-
+.loginRegisterButton {
+  top: 20px;
+  right: 20px;
+}
+.backToHome {
+  top: 20px;
+  right: 150px;
+}
 .error {
   color: #9a3b3b;
   font-weight: bold;
   margin-top: 5px;
+}
+.center{
+  text-align: center;
 }

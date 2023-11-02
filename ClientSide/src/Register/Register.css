@@ -69,9 +69,25 @@
   border-radius: 5px;
   font-weight: bold;
 }
-
+.link{
+  background-color: transparent;
+}
 .error {
   color: #9A3B3B;
   font-weight: bold;
   margin-top: 5px;
+}
+.loginInReg{
+    margin-top: 20px;
+  cursor: pointer;
+  background-color: #b0926a;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+  position: absolute;
+  top: 0;
+  right: 20px;
 }

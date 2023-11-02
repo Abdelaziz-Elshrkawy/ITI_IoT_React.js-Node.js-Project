@@ -1,13 +1,6 @@
 .write{
     padding-top: 50px;
-    background-color: #fdf3e1;
-}
-.writeImg{
-    margin-left: 7.5vw;
-    width: 85vw;
-    height: 300px;
-    border-radius: 10px;
-    object-fit: cover;
+    background-color: #ffffff;
 }
 
 .writeForm{
@@ -15,7 +8,7 @@
 
 }
 .writeFormGroup{
-    margin-left: 150px;
+    margin-left: 10px;
     display: flex;
     align-items: center;
 }
@@ -39,7 +32,7 @@
     border: none;
     color: #706233;
     padding: 20px;
-    width: 90vw;
+    width: 75vw;
     
 }
 .writeInput:focus{
@@ -47,7 +40,7 @@
 }
 .writeText{
     font-size: 20px;
-    height: 130vh;
+    height: auto;
     color: #706233;
 }
 .writeSubmit{
@@ -66,4 +59,9 @@
 }
 .writeInput::placeholder {
     color: #B0926A; 
+  }
+
+  #lottie{
+    margin: auto;
+    width: 320px;
   }

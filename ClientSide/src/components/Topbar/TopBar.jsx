@@ -1,65 +1,80 @@
-import { Link } from 'react-router-dom';
-import './TopBar.css';
-
+import { Link, useNavigate } from "react-router-dom";
+import "./TopBar.css";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import lottieFile from '../../assets/pulse.json'
+import Lottie from "lottie-react";
 export default function TopBar() {
-    const user = false;
-    return (
-        <div className="top">
-            <div className="topleft">
-                <i className="topIcon fa-brands fa-facebook-f"></i>
-                <i className="topIcon fa-brands fa-twitter"></i>
-                <i className="topIcon fa-brands fa-pinterest-p"></i>
-                <i className="topIcon fa-brands fa-instagram"></i>
-            </div>
-            <div className="topCenter">
-                <ul className="topList">
-                    <li className="topListItem">
-                        <Link to="/" className="link">
-                            HOME
-                        </Link>
-                    </li>
-                     <li className="topListItem">
-                        <Link to="/" className="link">
-                            ABOUT
-                        </Link>
-                    </li>
-                    {/* <li className="topListItem">
+  const userData = JSON.parse(localStorage.getItem("current_user"))
+    ? JSON.parse(localStorage.getItem("current_user"))
+    : {
+        logged: false,
+      };
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+    navigate("/");
+  };
+
+  return (
+    <div className="top">
+      <div className="topleft">
+        <Lottie animationData={lottieFile} id="logo"/>
+      </div>
+      <div className="topCenter">
+        <ul className="topList">
+          <li className="topListItem">
+            <Link to="/" className="link">
+              HOME
+            </Link>
+          </li>
+          <li className="topListItem">
+            <Link to="/" className="link">
+              ABOUT
+            </Link>
+          </li>
+          {/* <li className="topListItem">
                         <Link to="/" className="link">
                             CONTACT
                         </Link>
                     </li>  */}
-                    <li className="topListItem">
-                        <Link to="/write" className="link">
-                            WRITE
-                        </Link>
-                    </li>
-                    <li className="topListItem">{user && 'LOGOUT'}</li>
-                </ul>
-            </div>
-            <div className="topRight">
-                {user ? (
-                    <img
-                        className="topImg"
-                        src="https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/drums-vintage-retro-music-circle-icon-kevin-garbes.jpg"
-                        alt=""
-                    ></img>
-                ) : (
-                    <ul className="topList">
-                        <li className="topListItem">
-                            <Link to="/Login" className="link">
-                                LOGIN
-                            </Link>
-                        </li>
-                        <li className="topListItem">
-                            <Link to="/Register" className="link">
-                                REGISTER
-                            </Link>
-                        </li>
-                    </ul>
-                )}
-
-                <i className="topSearchIcon fa-solid fa-magnifying-glass"></i>
-            </div>
+          <li className="topListItem">
+            <Link to="/write" className="link">
+              WRITE
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="topRight">
+        {userData?.logged ? (
+          <div className="img-cont">
+            <img
+              className="topImg"
+              src={userData.src}
+              alt="user-image"
+              title={userData.user.name}
+            ></img>
+          </div>
+        ) : (
+          <ul className="topList">
+            <li className="topListItem">
+              <Link to="/Login" className="link">
+                LOGIN
+              </Link>
+            </li>
+            <li className="topListItem">
+              <Link to="/Register" className="link">
+                REGISTER
+              </Link>
+            </li>
+          </ul>
+        )}
+        <div onClick={handleLogout} className="logout-cont">
+          <span className="logout">{userData.logged && "LOGOUT"}</span>
         </div>
-    );
+        {/* <i className="topSearchIcon fa-solid fa-magnifying-glass"></i> */}
+      </div>
+    </div>
+  );
 }
