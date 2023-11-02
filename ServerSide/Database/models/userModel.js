@@ -51,15 +51,16 @@ export default class UsersMethods {
         }
     };
 
-    updateUser = async (userId, name,password) => {
+    updateUser = async (userId, name, password) => {
         try {
-            const user = await this.#usersModel.findOne(
-                { _id: userId }
+            const user = await this.#usersModel.findOne({ _id: userId });
+            user.password = await bcrypt.hash(
+                password + bcrypt_password,
+                parseInt(process.env.salt_rounds),
             );
-            user.password = await bcrypt.hash(password + bcrypt_password, parseInt(process.env.salt_rounds))
-            user.name = name
-            await user.save()
-            return user
+            user.name = name;
+            await user.save();
+            return user;
         } catch (err) {
             return err;
         }

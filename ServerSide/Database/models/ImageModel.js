@@ -10,7 +10,7 @@ export default class ImageMethods {
     addImage = async (data) => {
         try {
             const image = new this.#imageModel({
-                data
+                data,
             });
             await image.save();
             return image;

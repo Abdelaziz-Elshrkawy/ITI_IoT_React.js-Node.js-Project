@@ -43,7 +43,7 @@ export default class PostsMethods {
         try {
             return await this.#postsModel.findOne({
                 $and: [{ userId, _id: PostId }],
-            })
+            });
         } catch (err) {
             return err;
         }
@@ -51,19 +51,19 @@ export default class PostsMethods {
 
     updatePost = async (userId, PostId, title, body) => {
         try {
-            const post = await this.#postsModel.findOne(
-                { $and: [{ userId, _id: PostId }] }
-            );
-            post.title = title
-            post.body = body
-            await post.save()
-            return post
+            const post = await this.#postsModel.findOne({
+                $and: [{ userId, _id: PostId }],
+            });
+            post.title = title;
+            post.body = body;
+            await post.save();
+            return post;
         } catch (err) {
             return err;
         }
     };
 
     deletePost = async (_id) => {
-        return await this.#postsModel.deleteOne(_id)
-    }
+        return await this.#postsModel.deleteOne(_id);
+    };
 }
