@@ -4,8 +4,14 @@
 }
 
 .writeForm{
-    position: relative;
-
+    display: flex;
+    flex-wrap: wrap;
+}
+#btn-cont{
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 .writeFormGroup{
     margin-left: 10px;
@@ -25,15 +31,31 @@
     color:#706233;
     cursor: pointer;
 }
-
+#image-cont{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 10%;
+}
 .writeInput{
     font-size: 30px;
     background-color: #fdf3e1;
+    border-radius: 10px;
     border: none;
     color: #706233;
     padding: 20px;
-    width: 75vw;
-    
+    min-width: 100%;
+    margin: 5px;
+}
+#uploaded{
+    margin-top: 3px;
+    color: green;
+}
+#write-post{
+    width: 75%;
+    margin-right: 40px;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .writeInput:focus{
     outline: none;
@@ -44,7 +66,6 @@
     color: #706233;
 }
 .writeSubmit{
-    position: absolute;
     top: 550px;
     right: 50px;
     color: white;
@@ -63,5 +84,15 @@
 
   #lottie{
     margin: auto;
-    width: 320px;
+    width: 280px;
   }
+#success{
+    color: green;
+}
+#status-cont{
+    margin-top: 20px;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
