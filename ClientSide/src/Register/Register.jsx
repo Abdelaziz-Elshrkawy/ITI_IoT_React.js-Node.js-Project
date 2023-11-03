@@ -11,7 +11,6 @@ export default function Register() {
   const [profilePicture, setProfilePicture] = useState(null); // Add profilePicture state
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
   const { singUpResponse } = useSelector(
     (stat) => stat.user.signup
   );
@@ -40,7 +39,7 @@ export default function Register() {
     }
     if (profilePicture === null) {
       newErrors.profileImage = "Profile image is required";
-      let isValid = false;
+      isValid = false;
     }
     setErrors(newErrors);
     return isValid;
@@ -79,7 +78,7 @@ export default function Register() {
       setName("");
       setEmail("");
       setPassword("");
-      setProfilePicture("");
+      setProfilePicture(null);
     }
     console.log(singUpResponse);
     console.log(errors);
