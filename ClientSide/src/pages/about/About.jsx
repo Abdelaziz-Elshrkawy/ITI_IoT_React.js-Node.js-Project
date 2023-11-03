@@ -26,7 +26,7 @@ function About() {
         the clientSide implementation have done by{" "}
         <strong>Aya Abdelmoez</strong> and <strong>Manar Abo-Emira</strong> and
         the ServerSide implementation have done by{" "}
-        <strong>Abdelaziz Ibrahim Abdelaziz</strong>
+        <strong>Abdelaziz Ibrahim Abdelaziz</strong>.
       </div>
     </div>
   );
