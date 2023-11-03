@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { server_url } from '../components/singlepost/SinglePost'
 
 export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) => {
     const {rejectWithValue}  = thunAPI
     try {
-        const data = await fetch('http://localhost:3500/post')
+        const data = await fetch(`${server_url}post`)
         return await data.json()
     } catch (err) {
         return rejectWithValue(err.message)
@@ -11,7 +12,7 @@ export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) 
 })
 export const addPost = createAsyncThunk('/user/auth', async ({token, data}, thunkAPI) => {
     try {
-        const newPost = await fetch('http://localhost:3500/post', {
+        const newPost = await fetch(`${server_url}post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

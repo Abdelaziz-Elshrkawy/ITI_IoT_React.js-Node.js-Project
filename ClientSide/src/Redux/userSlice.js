@@ -1,8 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { server_url } from '../components/singlepost/SinglePost'
+
 
 export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) => {
     try {
-        const singUpResponse = await fetch('http://localhost:3500/user', {
+        const singUpResponse = await fetch(`${server_url}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -15,8 +17,9 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
     }
 })
 export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
+    console.log(server_url)
     try {
-        const loginResponse = await fetch('http://localhost:3500/user/login', {
+        const loginResponse = await fetch(`${server_url}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -34,7 +37,7 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
 
 export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
-        const loginResponse = await fetch('http://localhost:3500/user/auth', {
+        const loginResponse = await fetch(`${server_url}/user/auth`, {
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
