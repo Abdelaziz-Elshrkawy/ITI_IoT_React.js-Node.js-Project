@@ -35,8 +35,8 @@ export default class UsersMethods {
     login = async (email, InputPassword) => {
         console.log(`email:${email} password: ${InputPassword}`);
         const user = await this.findUser(email);
-        console.log(user);
-        if (user && user._id) {
+        console.log('czz '+user);
+        if (user?._id) {
             const { _id, name, email, password, imageId } = user;
             const checker = bcrypt.compareSync(
                 InputPassword + bcrypt_password,
