@@ -5,6 +5,7 @@ import { REACT_APP_SERVER_URL } from '../env'
 export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) => {
     try {
         const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user`, {
+            mode: "cors",
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -20,6 +21,7 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
     console.log(REACT_APP_SERVER_URL)
     try {
         const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login`, {
+            mode: "cors",
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -39,6 +41,7 @@ export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
 
         const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth`, {
+            mode: "cors",
             headers: {
                 'Content-Type': 'application/json',
                 authorization: 'Bearer '+token
