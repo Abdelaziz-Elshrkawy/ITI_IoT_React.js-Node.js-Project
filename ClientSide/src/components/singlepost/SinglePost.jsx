@@ -44,3 +44,6 @@ export default function SinglePost() {
         </div>
     );
 }
+
+export const server_url =
+  "https://itiiotreactjs-nodejs-project.abdelaziz-elshr.repl.co/";

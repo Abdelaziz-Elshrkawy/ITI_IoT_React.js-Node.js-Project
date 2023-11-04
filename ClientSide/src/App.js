@@ -7,6 +7,7 @@ import Write from './pages/write/Write.jsx';
 import Settings from './pages/settings/Settings.jsx';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
+import About from './pages/about/About.jsx';
 
 function App() {
     let user = JSON.parse(localStorage.getItem('current_user'));
@@ -30,13 +31,14 @@ function App() {
                 <Route
                     exact
                     path="/write"
-                    element={user && user.logged ? <Write /> : <Login />}
+                    element={user?.logged ? <Write /> : <Login />}
                 />
                 <Route
                     exact
                     path="/settings"
                     element={user ? <Settings /> : <Register />}
                 />
+                <Route exact path="/about" element={<About/>} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Router>

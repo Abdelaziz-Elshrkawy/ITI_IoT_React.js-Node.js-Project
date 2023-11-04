@@ -11,14 +11,11 @@ export default function Register() {
   const [profilePicture, setProfilePicture] = useState(null); // Add profilePicture state
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-  const { singUpResponse } = useSelector(
-    (stat) => stat.user.signup
-  );
+  const { singUpResponse } = useSelector((stat) => stat.user.signup);
   let newErrors;
   const validateForm = () => {
     let isValid = true;
-    newErrors = {}
+    newErrors = {};
 
     if (name.trim() === "") {
       newErrors.name = "Name is required";
@@ -40,7 +37,7 @@ export default function Register() {
     }
     if (profilePicture === null) {
       newErrors.profileImage = "Profile image is required";
-      let isValid = false;
+      isValid = false;
     }
     setErrors(newErrors);
     return isValid;
@@ -62,7 +59,7 @@ export default function Register() {
   const handleFile = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    console.log(e.target.files[0])
+    console.log(e.target.files[0]);
     reader.onload = () => {
       setProfilePicture(reader.result);
     };
@@ -133,16 +130,12 @@ export default function Register() {
         )}
         <button className="registerButton">Register</button>
       </form>
-        <Link to="/Login" className="link">
-      <button className="loginInReg">
-          Login
-      </button>
-        </Link>
-        <Link to="/" className="link">
-      <button className="backToHome">
-          Back to Home
-      </button>
-        </Link>
+      <Link to="/Login" className="link">
+        <button className="loginInReg">Login</button>
+      </Link>
+      <Link to="/" className="link">
+        <button className="backToHome">Back to Home</button>
+      </Link>
       <p>{errors.success}</p>
     </div>
   );
