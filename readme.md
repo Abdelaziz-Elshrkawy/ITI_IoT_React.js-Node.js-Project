@@ -1,6 +1,6 @@
 # ITI_IoT_React.js-Node.js-Project
 
-This is MERN Stack block application.
+This is MERN Stack Blog application.
 
 Features:
 
