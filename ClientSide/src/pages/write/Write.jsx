@@ -2,7 +2,7 @@ import TopBar from "../../components/Topbar/TopBar";
 import "./write.css";
 import Lottie from "lottie-react";
 import lottieFile from "../../assets/animation_log6eie9.json";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addPost } from "../../Redux/postSlice";
 import { useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ export default function Write() {
   const dispatch = useDispatch();
   const { newPostResponse } = useSelector((stat) => stat.post.newPost);
   const navigate = useNavigate();
-  const imageRef = useRef(null);
+
 
   const handleFile = (e) => {
     const reader = new FileReader();
@@ -73,7 +73,6 @@ export default function Write() {
       setFormValidationStat({ success: "Your Post have been Published" });
       setTitle("");
       setBody("");
-      imageRef.current.value = null;
       setPostImage(null);
       setTimeout(() => {
         setFormValidationStat({});
@@ -101,7 +100,6 @@ export default function Write() {
               accept=".jpg,.jpeg,.png,.gif"
               style={{ display: "none" }}
               onChange={handleFile}
-              ref={imageRef}
             />
           </div>
           <div className="writeFormGroup" id="write-post">

@@ -1,16 +1,17 @@
 import "./Register.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { signUp } from "../Redux/userSlice";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [profilePicture, setProfilePicture] = useState(null); // Add profilePicture state
+  const [profilePicture, setProfilePicture] = useState(null);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const imageRef = useRef(null);
   const { singUpResponse } = useSelector((stat) => stat.user.signup);
   let newErrors;
   const validateForm = () => {
@@ -77,6 +78,7 @@ export default function Register() {
       setEmail("");
       setPassword("");
       setProfilePicture("");
+      imageRef.current.value = null;
     }
     console.log(singUpResponse);
     console.log(errors);
@@ -123,6 +125,7 @@ export default function Register() {
           type="file"
           accept=".jpg,.jpeg,.png,.gif"
           placeholder="Enter Your Password...."
+          ref={imageRef}
           onChange={handleFile}
         />
         {errors.profileImage && (
