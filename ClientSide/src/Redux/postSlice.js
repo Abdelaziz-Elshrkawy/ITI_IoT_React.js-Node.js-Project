@@ -10,7 +10,7 @@ export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) 
         return rejectWithValue(err.message)
     }
 })
-export const addPost = createAsyncThunk('/user/auth', async ({token, data}, thunkAPI) => {
+export const addPost = createAsyncThunk('/post/addPost', async ({token, data}, thunkAPI) => {
     try {
         const newPost = await fetch(`${REACT_APP_SERVER_URL}/post`, {
             method: 'POST',
