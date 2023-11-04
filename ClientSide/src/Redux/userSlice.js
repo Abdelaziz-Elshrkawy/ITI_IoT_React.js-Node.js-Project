@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { server_url } from '../components/singlepost/SinglePost'
+import { REACT_APP_SERVER_URL } from '../env'
 
 
 export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) => {
     try {
-        const singUpResponse = await fetch(`${server_url}/user`, {
+        const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -17,9 +17,9 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
     }
 })
 export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
-    console.log(server_url)
+    console.log(REACT_APP_SERVER_URL)
     try {
-        const loginResponse = await fetch(`${server_url}/user/login`, {
+        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -38,7 +38,7 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
 export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
 
-        const loginResponse = await fetch(`${server_url}/user/auth`, {
+        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth`, {
             headers: {
                 'Content-Type': 'application/json',
                 authorization: 'Bearer '+token

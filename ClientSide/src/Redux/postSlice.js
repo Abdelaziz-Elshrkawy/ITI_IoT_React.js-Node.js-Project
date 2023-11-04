@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { server_url } from '../components/singlepost/SinglePost'
+import { REACT_APP_SERVER_URL } from '../env'
 
 export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) => {
     const {rejectWithValue}  = thunAPI
     try {
-        const data = await fetch(`${server_url}post`)
+        const data = await fetch(`${REACT_APP_SERVER_URL}/post`)
         return await data.json()
     } catch (err) {
         return rejectWithValue(err.message)
@@ -12,7 +12,7 @@ export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) 
 })
 export const addPost = createAsyncThunk('/user/auth', async ({token, data}, thunkAPI) => {
     try {
-        const newPost = await fetch(`${server_url}post`, {
+        const newPost = await fetch(`${REACT_APP_SERVER_URL}/post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -117,6 +117,7 @@ export default function Write() {
               placeholder="Tell your story...."
               type="text"
               className="writeInput writeText"
+              id="post-body"
               value={body}
               onChange={(e) => setBody(e.target.value)}
             ></textarea>
