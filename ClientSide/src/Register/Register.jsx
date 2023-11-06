@@ -1,7 +1,7 @@
 import "./Register.css";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../Redux/userSlice";
 
 export default function Register() {
@@ -13,6 +13,8 @@ export default function Register() {
   const [errors, setErrors] = useState({});
   const imageRef = useRef(null);
   const { singUpResponse } = useSelector((stat) => stat.user.signup);
+  const navigate = useNavigate();
+
   let newErrors;
   const validateForm = () => {
     let isValid = true;
@@ -73,6 +75,9 @@ export default function Register() {
       setErrors(newErrors);
     } else if (singUpResponse.response === "Success") {
       newErrors.email = "";
+      newErrors.success = "you have been registered ✔";
+      navigate("/login");
+      window.location.reload()
       setErrors(newErrors);
       setName("");
       setEmail("");
@@ -139,7 +144,7 @@ export default function Register() {
       <Link to="/" className="link">
         <button className="backToHome">Back to Home</button>
       </Link>
-      <p>{errors.success}</p>
+      <p id="success">{errors.success}</p>
     </div>
   );
 }

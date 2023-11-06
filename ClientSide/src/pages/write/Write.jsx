@@ -25,29 +25,20 @@ export default function Write() {
     };
   };
   const validateForm = () => {
-    let isValid = false;
+    let isValid = true;
     const newFormValidationStat = {};
     if (title.length === 0) {
       newFormValidationStat.title = "Title is required";
       isValid = false;
-    } else {
-      newFormValidationStat.title = "";
-      isValid = true;
-    }
+    } 
     if (body.length === 0) {
       newFormValidationStat.body = "Empty body is not allowed";
       isValid = false;
-    } else {
-      newFormValidationStat.body = "";
-      isValid = true;
-    }
+    } 
     if (postImage === null) {
       newFormValidationStat.postImage =
         "you must add image to represent your post";
       isValid = false;
-    } else {
-      newFormValidationStat.postImage = "";
-      isValid = true;
     }
     setFormValidationStat(newFormValidationStat);
     return isValid;
