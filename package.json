@@ -2,7 +2,7 @@
     "type": "module",
     "scripts": {
         "install-server": "cd ServerSide && npm i",
-        "install-client": "cd ClientSide && npm i",
+        "install-client": "cd ClientSide && npm run build",
         "server": "cd ServerSide && npm run dev",
         "client": "cd ClientSide && npm start"
     },
