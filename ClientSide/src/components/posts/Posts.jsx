@@ -5,14 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../Redux/postSlice";
 export default function Posts() {
   const dispatch = useDispatch();
-  const {allPosts} = useSelector((state) => state.post);
+  const { allPosts } = useSelector((state) => state.post);
   console.log(allPosts);
   useEffect(() => {
     dispatch(getPosts());
+    console.log(allPosts);
   }, []);
   return (
     <div className="posts">
-      {allPosts ? (
+      {typeof allPosts?.response === "object" ? (
         allPosts.response.length > 0 ? (
           allPosts.response.map((e, i) => {
             return (
