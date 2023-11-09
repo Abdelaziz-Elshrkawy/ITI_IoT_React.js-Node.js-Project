@@ -7,9 +7,11 @@ import postRoute from './Routes/postRoute.js';
 const app = new express();
 
 app.use(express.json());
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use(
+    cors({
+        origin: 'https://iot-graduation-project-client.onrender.com',
+    }),
+);
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 app.use((err, req, res, next) => {
