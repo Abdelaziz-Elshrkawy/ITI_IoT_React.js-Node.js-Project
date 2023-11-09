@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./TopBar.css";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import lottieFile from '../../assets/pulse.json'
+import lottieFile from "../../assets/pulse.json";
 import Lottie from "lottie-react";
 export default function TopBar() {
   const userData = JSON.parse(localStorage.getItem("current_user"))
@@ -20,7 +20,9 @@ export default function TopBar() {
   return (
     <div className="top">
       <div className="topleft">
-        <Lottie animationData={lottieFile} id="logo"/>
+        <Link to="/">
+          <Lottie animationData={lottieFile} id="logo" />
+        </Link>
       </div>
       <div className="topCenter">
         <ul className="topList">

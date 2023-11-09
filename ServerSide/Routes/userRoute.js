@@ -42,9 +42,7 @@ userRoute.post('/login', async (req, res) => {
             userLoginStatus.image =
                 data && userLoginStatus.logged ? data : null;
         }
-        // console.log(userLoginStatus);
         res.json(userLoginStatus);
-        // console.log(userLoginStatus);
     } else {
         res.status(404).json({ userLoginStatus });
     }

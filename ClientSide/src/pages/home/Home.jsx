@@ -20,7 +20,6 @@ export default function Home() {
     <div className='home'>
       <TopBar />
        <Header />
-       <h2 className="thoughts">My Thoughts .........</h2>
        <Posts />
     
     </div>
