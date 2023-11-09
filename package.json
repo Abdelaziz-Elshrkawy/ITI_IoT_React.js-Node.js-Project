@@ -5,5 +5,8 @@
         "install-client": "cd ClientSide && npm i",
         "server": "cd ServerSide && npm run dev",
         "client": "cd ClientSide && npm start"
+    },
+    "engines": {
+        "node": "20.9.0"
     }
 }
