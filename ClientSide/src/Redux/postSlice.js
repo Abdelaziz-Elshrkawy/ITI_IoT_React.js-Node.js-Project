@@ -4,7 +4,7 @@ import { REACT_APP_SERVER_URL } from '../env'
 export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) => {
     const {rejectWithValue}  = thunAPI
     try {
-        const data = await fetch(`${REACT_APP_SERVER_URL}/post`)
+        const data = await fetch(`${REACT_APP_SERVER_URL}/post?timestamp=${Date.now()}`)
         return await data.json()
     } catch (err) {
         return rejectWithValue(err.message)
@@ -12,8 +12,7 @@ export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) 
 })
 export const addPost = createAsyncThunk('/post/addPost', async ({token, data}, thunkAPI) => {
     try {
-        const newPost = await fetch(`${REACT_APP_SERVER_URL}/post`, {
-            mode: "cors",
+        const newPost = await fetch(`${REACT_APP_SERVER_URL}/post?timestamp=${Date.now()}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
