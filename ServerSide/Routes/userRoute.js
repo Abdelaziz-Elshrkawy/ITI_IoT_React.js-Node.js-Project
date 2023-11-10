@@ -9,6 +9,7 @@ const userImage = new ImageMethods('users-image');
 
 userRoute.post('/', async (req, res) => {
     try {
+        console.log(req.body)
         const { name, email, password, profilePicture } = req.body;
         const checker = await users.findUser(email);
         if (checker === null) {
@@ -29,6 +30,7 @@ userRoute.post('/', async (req, res) => {
 
 userRoute.post('/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log(req.body)
     const userLoginStatus = await users.login(email, password);
     if (typeof userLoginStatus === 'object') {
         userLoginStatus.token = userLoginStatus.user
