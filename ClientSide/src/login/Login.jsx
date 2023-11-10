@@ -58,7 +58,7 @@ export default function Login() {
         })
       );
       localStorage.setItem("current_token", loginResponse.token);
-      window.location.reload();
+      // window.location.reload();
       navigate("/");
     } else {
       newErrors.wrongEntry = "Wrong Email or Password";
