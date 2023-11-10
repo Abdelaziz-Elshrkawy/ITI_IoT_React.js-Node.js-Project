@@ -17,7 +17,7 @@ userRoute.post('/', async (req, res) => {
             if (user) {
                 res.json({ response: 'Success' });
             } else {
-                throw new Error('something went wrong');
+                res.json({ response: 'something went wrong' })
             }
         } else {
             res.json({ response: 'user exist' });

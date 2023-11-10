@@ -3,7 +3,7 @@ import { REACT_APP_SERVER_URL } from '../env'
 
 
 export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) => {
-    console.log(JSON.stringify(form))
+    console.log(form)
     try {
         console.log(REACT_APP_SERVER_URL)
         const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user?timestamp=${Date.now()}`, {
