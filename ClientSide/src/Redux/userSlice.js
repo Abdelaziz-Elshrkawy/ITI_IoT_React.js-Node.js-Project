@@ -14,9 +14,9 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
             },
             body: JSON.stringify(form)
         })
-        return await singUpResponse.json()
+        return await singUpResponse?.json()
     } catch (err) {
-        return err
+        thunkAPI.rejectWithValue(err)
     }
 })
 export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
@@ -34,7 +34,7 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
         console.log(res)
         return res
     } catch (err) {
-        return err
+        thunkAPI.rejectWithValue(err)
     }
 
 })
@@ -52,7 +52,7 @@ export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
         console.log(res)
         return res
     } catch (err) {
-        return err
+        thunkAPI.rejectWithValue(err)
     }
 })
 
