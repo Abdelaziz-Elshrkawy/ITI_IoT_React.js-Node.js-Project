@@ -5,19 +5,16 @@ import userRoute from './Routes/userRoute.js';
 import postRoute from './Routes/postRoute.js';
 
 const app = new express();
-
-app.use(express.json());
 app.use(
     cors({
-        origin: 'http://localhost:3000/',
+        origin: 'https://iot-graduation-project-client.onrender.com',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-        credentials: true,
+        preflightContinue: false,
+        optionsSuccessStatus: 204,
+        allowedHeaders: 'application/json',
     }),
 );
-app.use((req, res, next) => {
-    res.header('Access-Control-Max-Age', 3600);
-    next();
-});
+app.use(express.json());
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 app.use((err, req, res, next) => {
