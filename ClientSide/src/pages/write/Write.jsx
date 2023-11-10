@@ -55,12 +55,12 @@ export default function Write() {
   };
 
   const checkNewPostResponse = () => {
-    if (newPostResponse?.response === "jwt expired") {
+    if (newPostResponse === "jwt expired") {
       localStorage.clear();
       navigate("/");
       window.location.reload();
     }
-    if (newPostResponse?.response === "Success") {
+    if (newPostResponse === "Success") {
       setFormValidationStat({ success: "Your Post have been Published" });
       setTitle("");
       setBody("");
@@ -72,7 +72,7 @@ export default function Write() {
   };
   useEffect(() => {
     checkNewPostResponse();
-    console.log(newPostResponse?.response);
+    console.log(newPostResponse);
   }, [newPostResponse]);
   return (
     <>

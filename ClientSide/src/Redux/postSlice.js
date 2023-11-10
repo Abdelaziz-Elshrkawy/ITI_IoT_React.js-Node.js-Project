@@ -21,7 +21,8 @@ export const addPost = createAsyncThunk('/post/addPost', async ({ token, data },
                 authorization: 'Bearer ' + token
             }
         })
-        return newPost
+        console.log(newPost)
+        return newPost.data
     } catch (err) {
         thunkAPI.rejectWithValue(err)
     }
