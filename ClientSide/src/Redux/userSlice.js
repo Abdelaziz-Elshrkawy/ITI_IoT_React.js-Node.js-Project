@@ -6,7 +6,7 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
     console.log(JSON.stringify(form))
     try {
         console.log(REACT_APP_SERVER_URL)
-        const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user`, {
+        const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user?timestamp=${Date.now()}`, {
             mode: "cors",
             method: 'POST',
             headers: {
@@ -22,7 +22,7 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
 export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
     console.log(REACT_APP_SERVER_URL)
     try {
-        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login`, {
+        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login?timestamp=${Date.now()}`, {
             mode: "cors",
             method: 'POST',
             headers: {
@@ -42,7 +42,7 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
 export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
 
-        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth`, {
+        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth?timestamp=${Date.now()}`, {
             mode: "cors",
             headers: {
                 'Content-Type': 'application/json',
