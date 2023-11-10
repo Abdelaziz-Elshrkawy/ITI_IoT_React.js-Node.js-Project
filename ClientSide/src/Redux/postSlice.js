@@ -7,7 +7,7 @@ export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) 
         const data = await fetch(`${REACT_APP_SERVER_URL}/post?timestamp=${Date.now()}`)
         return await data.json()
     } catch (err) {
-        rejectWithValue(err.message)
+        thunkAPI.rejectWithValue(err.message)
     }
 })
 export const addPost = createAsyncThunk('/post/addPost', async ({ token, data }, thunkAPI) => {
