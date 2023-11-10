@@ -7,7 +7,7 @@ export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) =>
     try {
         console.log(REACT_APP_SERVER_URL)
         const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user?timestamp=${Date.now()}`, {
-            mode: "cors",
+            mode: "no-cors",
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,7 +23,6 @@ export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
     console.log(REACT_APP_SERVER_URL)
     try {
         const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login?timestamp=${Date.now()}`, {
-            mode: "cors",
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -43,7 +42,6 @@ export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
 
         const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth?timestamp=${Date.now()}`, {
-            mode: "cors",
             headers: {
                 'Content-Type': 'application/json',
                 authorization: 'Bearer ' + token
