@@ -76,14 +76,13 @@ export default function Register() {
     } else if (singUpResponse.response === "Success") {
       newErrors.email = "";
       newErrors.success = "you have been registered ✔";
-      navigate("/login");
-      window.location.reload()
       setErrors(newErrors);
       setName("");
       setEmail("");
       setPassword("");
       setProfilePicture("");
       imageRef.current.value = null;
+      navigate("/login");
     }
     console.log(singUpResponse);
     console.log(errors);
