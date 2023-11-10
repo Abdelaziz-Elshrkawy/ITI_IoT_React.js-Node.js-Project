@@ -9,7 +9,7 @@ const app = new express();
 app.use(express.json());
 app.use(
     cors({
-        origin: ['https://iot-graduation-project-client.onrender.com','http://localhost:3000/'],
+        origin: 'http://localhost:3000/',
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
     }),

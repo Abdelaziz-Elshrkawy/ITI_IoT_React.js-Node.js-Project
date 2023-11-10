@@ -66,7 +66,7 @@ export default function Login() {
       localStorage.clear();
     }
   };
-  console.log(loginResponse);
+  // console.log(loginResponse);
   useEffect(() => {
     if (loginResponse && isMountedRef.current) {
       checkValidity();

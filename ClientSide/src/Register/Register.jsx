@@ -62,7 +62,7 @@ export default function Register() {
   const handleFile = (e) => {
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     reader.onload = () => {
       setProfilePicture(reader.result);
     };
@@ -84,8 +84,8 @@ export default function Register() {
       imageRef.current.value = null;
       navigate("/login");
     }
-    console.log(singUpResponse);
-    console.log(errors);
+    // console.log(singUpResponse);
+    // console.log(errors);
   };
   useEffect(() => {
     if (singUpResponse) {
