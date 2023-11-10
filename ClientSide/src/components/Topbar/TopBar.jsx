@@ -13,8 +13,8 @@ export default function TopBar() {
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.clear();
-    window.location.reload();
     navigate("/");
+    window.location.reload();
   };
 
   return (
