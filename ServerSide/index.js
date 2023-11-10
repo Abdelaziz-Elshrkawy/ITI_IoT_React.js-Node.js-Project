@@ -14,6 +14,10 @@ app.use(
         credentials: true,
     }),
 );
+app.use((req, res, next) => {
+    res.header('Access-Control-Max-Age', 3600);
+    next();
+});
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 app.use((err, req, res, next) => {
