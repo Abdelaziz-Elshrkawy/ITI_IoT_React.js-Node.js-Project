@@ -10,6 +10,8 @@ app.use(express.json());
 app.use(
     cors({
         origin: 'https://iot-graduation-project-client.onrender.com',
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        credentials: true,
     }),
 );
 app.use('/user', userRoute);
