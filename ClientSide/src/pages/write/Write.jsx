@@ -19,15 +19,13 @@ export default function Write() {
 
 
   const handleFile = (e) => {
-    if(e.target.files[0].size < 209715.2){
+    if(e.target.files[0].size < 109715.2){
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       // console.log(e.target.files[0]);
       reader.onload = () => {
         setPostImage(reader.result);
       };
-    }else{
-      setFormValidationStat({profileImage: 'image size must be less than 200kb'})
     }
   };
   const validateForm = () => {
@@ -43,7 +41,7 @@ export default function Write() {
     } 
     if (postImage === null) {
       newFormValidationStat.postImage =
-        "you must add image to represent your post";
+        "you must add image to represent your post\n Note:image size must be less than 100kb";
       setIsValid(false);
     }
     setFormValidationStat(newFormValidationStat);
