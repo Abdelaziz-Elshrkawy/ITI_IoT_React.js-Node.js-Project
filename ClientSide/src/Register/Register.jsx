@@ -11,44 +11,44 @@ export default function Register() {
   const [profilePicture, setProfilePicture] = useState(null);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
+  const [isValid, setIsValid] = useState(false);
   const imageRef = useRef(null);
   const { singUpResponse } = useSelector((stat) => stat.user.signup);
   const navigate = useNavigate();
 
   let newErrors;
   const validateForm = () => {
-    let isValid = true;
     newErrors = {};
-
+    setIsValid(true);
     if (name.trim() === "") {
       newErrors.name = "Name is required";
-      isValid = false;
+      setIsValid(false);
     }
     if (email.trim() === "") {
       newErrors.email = "Email is required";
-      isValid = false;
+      setIsValid(false);
     } else if (!/\S+@\S+\.com$/.test(email)) {
       newErrors.email = "Email is invalid";
-      isValid = false;
+      setIsValid(false);
     }
     if (password.trim() === "") {
       newErrors.password = "Password is required";
-      isValid = false;
+      setIsValid(false);
     } else if (password.length < 8) {
       newErrors.password = "Password should be more than 8 characters";
-      isValid = false;
+      setIsValid(false);
     }
     if (profilePicture === null) {
       newErrors.profileImage = "Profile image is required";
-      isValid = false;
+      setIsValid(false);
     }
     setErrors(newErrors);
-    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) {
+    validateForm()
+    if (isValid) {
       dispatch(
         signUp({
           name,
@@ -60,12 +60,16 @@ export default function Register() {
     }
   };
   const handleFile = (e) => {
+    if(e.target.files[0].size < 209715.2){
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     // console.log(e.target.files[0]);
     reader.onload = () => {
       setProfilePicture(reader.result);
     };
+  }else{
+    setErrors({profileImage: 'image size must be less than 200kb'})
+  }
   };
 
   const checkUser = () => {
@@ -132,6 +136,7 @@ export default function Register() {
           ref={imageRef}
           onChange={handleFile}
         />
+        <p></p>
         {errors.profileImage && (
           <div className="error">{errors.profileImage}</div>
         )}
