@@ -60,7 +60,7 @@ export default function Register() {
     }
   };
   const handleFile = (e) => {
-    if(e.target.files[0].size < 209715.2){
+    if(e.target.files[0].size < 100000.2){
     const reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     // console.log(e.target.files[0]);
@@ -68,7 +68,7 @@ export default function Register() {
       setProfilePicture(reader.result);
     };
   }else{
-    setErrors({profileImage: 'image size must be less than 200kb'})
+    setErrors({profileImage: 'image size must be less than 100kb'})
   }
   };
 

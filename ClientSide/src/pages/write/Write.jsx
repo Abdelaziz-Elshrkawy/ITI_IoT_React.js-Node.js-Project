@@ -17,9 +17,8 @@ export default function Write() {
   const { newPostResponse } = useSelector((stat) => stat.post.newPost);
   const navigate = useNavigate();
 
-
   const handleFile = (e) => {
-    if(e.target.files[0].size < 109715.2){
+    if (e.target.files[0].size < 100000.2) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       // console.log(e.target.files[0]);
@@ -34,11 +33,11 @@ export default function Write() {
     if (title.length === 0) {
       newFormValidationStat.title = "Title is required";
       setIsValid(false);
-    } 
+    }
     if (body.length === 0) {
       newFormValidationStat.body = "Empty body is not allowed";
       setIsValid(false);
-    } 
+    }
     if (postImage === null) {
       newFormValidationStat.postImage =
         "you must add image to represent your post\n Note:image size must be less than 100kb";
@@ -51,7 +50,7 @@ export default function Write() {
     e.preventDefault();
     const token = localStorage.getItem("current_token");
     const userId = JSON.parse(localStorage.getItem("current_user"))?.user?._id;
-    validateForm()
+    validateForm();
     if (typeof token !== null && typeof userId !== null && isValid) {
       const data = { title, body, userId, postImage };
       dispatch(addPost({ token, data }));
