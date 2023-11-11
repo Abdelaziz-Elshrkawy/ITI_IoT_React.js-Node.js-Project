@@ -27,6 +27,9 @@ export const addPost = createAsyncThunk('/post/addPost', async ({ token, data },
         thunkAPI.rejectWithValue(err)
     }
 })
+
+
+
 const postSlice = createSlice({
     name: 'post',
     initialState: {
@@ -36,7 +39,12 @@ const postSlice = createSlice({
             newPostStatus: false
         }
     },
-    reducer: {},
+    reducers: {
+        clearPostResponse: (stat) => {
+            stat.newPost.newPostResponse = { response: '' }
+            stat.newPost.newPostStatus = false
+        }
+    },
     extraReducers: {
         [getPosts.fulfilled]: (stat, action) => {
             stat.allPosts = action.payload
@@ -48,4 +56,5 @@ const postSlice = createSlice({
     }
 })
 
+export const { clearPostResponse } = postSlice.actions;
 export default postSlice.reducer;

@@ -4,20 +4,20 @@ import Lottie from "lottie-react";
 import lottieFile from "../../assets/animation_log6eie9.json";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../Redux/postSlice";
+import { addPost, clearPostResponse } from "../../Redux/postSlice";
 import { useNavigate } from "react-router-dom";
-
 export default function Write() {
   const [postImage, setPostImage] = useState(null);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [formValidationStat, setFormValidationStat] = useState({});
-  const [isValid, setIsValid] = useState(false);
+  const [imageSize, setImageSize] = useState(0);
   const dispatch = useDispatch();
   const { newPostResponse } = useSelector((stat) => stat.post.newPost);
   const navigate = useNavigate();
 
   const handleFile = (e) => {
+    setImageSize(e.target.files[0].size);
     if (e.target.files[0].size < 100000.2) {
       const reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
@@ -28,55 +28,60 @@ export default function Write() {
     }
   };
   const validateForm = () => {
-    setIsValid(true);
+    let formValidity = true;
     const newFormValidationStat = {};
     if (title.length === 0) {
       newFormValidationStat.title = "Title is required";
-      setIsValid(false);
+      formValidity = false;
     }
     if (body.length === 0) {
       newFormValidationStat.body = "Empty body is not allowed";
-      setIsValid(false);
+      formValidity = false;
     }
-    if (postImage === null) {
+    if (postImage === null || imageSize >= 100000.2) {
       newFormValidationStat.postImage =
         "you must add image to represent your post\n Note:image size must be less than 100kb";
-      setIsValid(false);
+      formValidity = false;
     }
     setFormValidationStat(newFormValidationStat);
+    return formValidity;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("current_token");
     const userId = JSON.parse(localStorage.getItem("current_user"))?.user?._id;
-    validateForm();
-    if (typeof token !== null && typeof userId !== null && isValid) {
+    if (typeof token !== null && typeof userId !== null && validateForm()) {
       const data = { title, body, userId, postImage };
       dispatch(addPost({ token, data }));
     }
   };
 
   const checkNewPostResponse = () => {
-    if (newPostResponse === "jwt expired") {
+    if (newPostResponse?.response === "jwt expired") {
       localStorage.clear();
       navigate("/");
       window.location.reload();
     }
-    if (newPostResponse === "Success") {
+    if (newPostResponse?.response === "Success") {
       setFormValidationStat({ success: "Your Post have been Published" });
       setTitle("");
       setBody("");
       setPostImage(null);
       setTimeout(() => {
         setFormValidationStat({});
-      }, 2000);
+        dispatch(clearPostResponse());
+        navigate("/");
+        window.location.reload();
+      }, 500);
     }
+    console.log(newPostResponse?.response);
   };
   useEffect(() => {
     checkNewPostResponse();
-    console.log(newPostResponse);
-  }, [newPostResponse]);
+    console.log(newPostResponse?.response);
+    console.log(postImage);
+  }, [newPostResponse, postImage]);
   return (
     <>
       <TopBar />
