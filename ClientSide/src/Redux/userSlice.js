@@ -1,40 +1,36 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { REACT_APP_SERVER_URL } from '../env'
-
+import axios from 'axios'
 
 export const signUp = createAsyncThunk('/user/signup', async (form, thunkAPI) => {
-    console.log(JSON.stringify(form))
+    console.log(form)
     try {
         console.log(REACT_APP_SERVER_URL)
-        const singUpResponse = await fetch(`${REACT_APP_SERVER_URL}/user`, {
-            mode: "cors",
-            method: 'POST',
+        const singUpResponse = await axios.post(`${REACT_APP_SERVER_URL}/user`, JSON.stringify(form), {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(form)
         })
-        return await singUpResponse.json()
+        console.log(singUpResponse)
+        return singUpResponse.data
     } catch (err) {
-        return err
+        console.log(err)
+        thunkAPI.rejectWithValue(err)
     }
 })
 export const login = createAsyncThunk('/user/login', async (data, thunkAPI) => {
     console.log(REACT_APP_SERVER_URL)
     try {
-        const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/login`, {
-            mode: "cors",
-            method: 'POST',
+        const loginResponse = await axios.post(`${REACT_APP_SERVER_URL}/user/login`, JSON.stringify(data), {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
+            }
         })
-        const res = await loginResponse.json()
-        console.log(res)
-        return res
+        console.log(loginResponse)
+        return loginResponse.data
     } catch (err) {
-        return err
+        console.log(err)
+        thunkAPI.rejectWithValue(err)
     }
 
 })
@@ -43,7 +39,6 @@ export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
     try {
 
         const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth`, {
-            mode: "cors",
             headers: {
                 'Content-Type': 'application/json',
                 authorization: 'Bearer ' + token
@@ -53,7 +48,7 @@ export const auth = createAsyncThunk('/user/auth', async (token, thunkAPI) => {
         console.log(res)
         return res
     } catch (err) {
-        return err
+        thunkAPI.rejectWithValue(err)
     }
 })
 

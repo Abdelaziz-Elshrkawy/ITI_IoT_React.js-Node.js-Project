@@ -1,27 +1,28 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { REACT_APP_SERVER_URL } from '../env'
+import axios from 'axios'
 
-export const getPosts = createAsyncThunk('post/get-all', async (_args, thunAPI) => {
-    const {rejectWithValue}  = thunAPI
+export const getPosts = createAsyncThunk('post/get-all', async (_args, thunkAPI) => {
     try {
-        const data = await fetch(`${REACT_APP_SERVER_URL}/post`)
-        return await data.json()
+        const data = await axios.get(`${REACT_APP_SERVER_URL}/post`)
+        console.log(data)
+        return data.data
     } catch (err) {
-        return rejectWithValue(err.message)
+        thunkAPI.rejectWithValue(err.message)
     }
 })
-export const addPost = createAsyncThunk('/post/addPost', async ({token, data}, thunkAPI) => {
+export const addPost = createAsyncThunk('/post/addPost', async ({ token, data }, thunkAPI) => {
+    console.log(data)
     try {
-        const newPost = await fetch(`${REACT_APP_SERVER_URL}/post`, {
-            mode: "cors",
-            method: 'POST',
+        const newPost = await axios.post(`${REACT_APP_SERVER_URL}/post`, JSON.stringify(data), {
+            mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json',
-                authorization: 'Bearer '+token
-            },
-            body: JSON.stringify(data)
+                authorization: 'Bearer ' + token
+            }
         })
-        return await newPost.json()
+        console.log(newPost)
+        return newPost.data
     } catch (err) {
         thunkAPI.rejectWithValue(err)
     }

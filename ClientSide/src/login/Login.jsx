@@ -58,15 +58,15 @@ export default function Login() {
         })
       );
       localStorage.setItem("current_token", loginResponse.token);
-      window.location.reload();
       navigate("/");
+      window.location.reload();
     } else {
       newErrors.wrongEntry = "Wrong Email or Password";
       setError(newErrors);
       localStorage.clear();
     }
   };
-  console.log(loginResponse);
+  // console.log(loginResponse);
   useEffect(() => {
     if (loginResponse && isMountedRef.current) {
       checkValidity();

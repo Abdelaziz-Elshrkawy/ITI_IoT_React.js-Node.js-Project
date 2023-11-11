@@ -12,55 +12,59 @@ export default function Write() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [formValidationStat, setFormValidationStat] = useState({});
+  const [isValid, setIsValid] = useState(false);
   const dispatch = useDispatch();
   const { newPostResponse } = useSelector((stat) => stat.post.newPost);
   const navigate = useNavigate();
 
 
   const handleFile = (e) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      setPostImage(reader.result);
-    };
+    if(e.target.files[0].size < 109715.2){
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      // console.log(e.target.files[0]);
+      reader.onload = () => {
+        setPostImage(reader.result);
+      };
+    }
   };
   const validateForm = () => {
-    let isValid = true;
+    setIsValid(true);
     const newFormValidationStat = {};
     if (title.length === 0) {
       newFormValidationStat.title = "Title is required";
-      isValid = false;
+      setIsValid(false);
     } 
     if (body.length === 0) {
       newFormValidationStat.body = "Empty body is not allowed";
-      isValid = false;
+      setIsValid(false);
     } 
     if (postImage === null) {
       newFormValidationStat.postImage =
-        "you must add image to represent your post";
-      isValid = false;
+        "you must add image to represent your post\n Note:image size must be less than 100kb";
+      setIsValid(false);
     }
     setFormValidationStat(newFormValidationStat);
-    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const token = localStorage.getItem("current_token");
     const userId = JSON.parse(localStorage.getItem("current_user"))?.user?._id;
-    if (typeof token !== null && typeof userId !== null && validateForm()) {
+    validateForm()
+    if (typeof token !== null && typeof userId !== null && isValid) {
       const data = { title, body, userId, postImage };
       dispatch(addPost({ token, data }));
     }
   };
 
   const checkNewPostResponse = () => {
-    if (newPostResponse?.response === "jwt expired") {
+    if (newPostResponse === "jwt expired") {
       localStorage.clear();
       navigate("/");
       window.location.reload();
     }
-    if (newPostResponse?.response === "Success") {
+    if (newPostResponse === "Success") {
       setFormValidationStat({ success: "Your Post have been Published" });
       setTitle("");
       setBody("");
@@ -72,7 +76,7 @@ export default function Write() {
   };
   useEffect(() => {
     checkNewPostResponse();
-    console.log(newPostResponse?.response);
+    console.log(newPostResponse);
   }, [newPostResponse]);
   return (
     <>

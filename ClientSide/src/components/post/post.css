@@ -12,7 +12,7 @@
 }
 .postImg{
     width: 60%;
-    
+    box-shadow: 0 0 5px #000;
     object-fit: cover;
     border-radius: 7px;
 }

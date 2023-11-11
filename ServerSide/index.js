@@ -3,15 +3,14 @@ import cors from 'cors';
 import { port } from './env.js';
 import userRoute from './Routes/userRoute.js';
 import postRoute from './Routes/postRoute.js';
+import bodyParser from 'body-parser';
 
 const app = new express();
-
-app.use(express.json());
 app.use(
-  cors({
-    origin: 'https://iot-graduation-project-client.onrender.com',
-  }),
+  cors()
 );
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/user', userRoute);
 app.use('/post', postRoute);
 app.use((err, req, res, next) => {
@@ -24,3 +23,5 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Running on: http://localhost:${port}`);
 });
+
+
