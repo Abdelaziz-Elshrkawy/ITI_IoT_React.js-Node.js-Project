@@ -1,13 +1,14 @@
 {
-    "type": "module",
-    "scripts": {
-        "install-server": "cd ServerSide && npm i",
-        "install-client": "cd ClientSide && npm i",
-        "build-client": "cd ClientSide && npm run build",
-        "server": "cd ServerSide && npm run dev",
-        "client": "cd ClientSide && npm start"
-    },
-    "engines": {
-        "node": "20.9.0"
-    }
+  "type": "module",
+  "scripts": {
+    "install-server": "cd ServerSide && npm i",
+    "install-client": "cd ClientSide && npm i",
+    "build-client": "cd ClientSide && npm run build",
+    "run-client": "cd ClientSide && npm start",
+    "server": "cd ServerSide && npm run dev",
+    "client": "cd ClientSide && npm start"
+  },
+  "engines": {
+    "node": "20.9.0"
+  }
 }
