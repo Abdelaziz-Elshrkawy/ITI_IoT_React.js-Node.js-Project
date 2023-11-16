@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import Post from "../post/Post";
 import "./posts.css";
-import lottieFile from "../../assets/pulse.json";
+import lottieFile from "../../assets/Animation - 1700128633734.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../Redux/postSlice";
 import Lottie from "lottie-react";

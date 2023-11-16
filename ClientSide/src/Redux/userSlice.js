@@ -68,7 +68,6 @@ const userSlice = createSlice({
       singUpResponse: null,
     },
     login: {
-      loginStatus: false,
       loginResponse: null,
     },
     auth: null,
@@ -84,7 +83,6 @@ const userSlice = createSlice({
     },
     [login.fulfilled]: (state, action) => {
       state.login.loginResponse = action.payload;
-      state.login.loginStatus = true;
     },
     [auth.fulfilled]: (state, action) => {
       state.auth = action;

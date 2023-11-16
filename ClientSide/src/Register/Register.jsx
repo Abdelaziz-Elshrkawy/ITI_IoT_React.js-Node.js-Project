@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { clearSignUpResponse, signUp } from "../Redux/userSlice";
 import Lottie from "lottie-react";
-import backGround from "../assets/back.json";
+import backGround from "../assets/Animation - 1700123428585.json";
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

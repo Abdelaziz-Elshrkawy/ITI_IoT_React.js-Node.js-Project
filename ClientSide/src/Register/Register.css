@@ -13,18 +13,17 @@
   background-size: cover;
 }
 
-#backGround{
+#backGround {
   position: fixed;
-  top: 0;
-  width: 100%;
+  height: 100%;
   z-index: -1;
 }
 
 .registerTitle {
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 20px;
   font-weight: bold;
-  color: #706233;
+  color: rgb(24, 190, 218);
 }
 
 .registerForm {
@@ -37,7 +36,7 @@
 .registerForm > label {
   margin: 10px 0;
   font-weight: bold;
-  color: #000;
+  color: rgb(24, 190, 218);
 }
 
 .registerInput {
@@ -51,7 +50,7 @@
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #000;
+  background-color: rgb(24, 190, 218);
   border: none;
   color: white;
   border-radius: 5px;
@@ -61,14 +60,16 @@
 }
 
 .registerButton:hover {
-  background-color: #E1C78F;
+  background-color: #fff;
+  color: rgb(24, 190, 218);
+  border: rgb(24, 190, 218) 1px solid;
 }
 
 #loginButton {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #B0926A;
+  background-color: #b0926a;
   cursor: pointer;
   border: none;
   padding: 10px 20px;
@@ -76,20 +77,21 @@
   border-radius: 5px;
   font-weight: bold;
 }
-.link{
+.link {
   background-color: transparent;
 }
 .error {
-  color: #9A3B3B;
+  color: #9a3b3b;
   font-weight: bold;
   margin-top: 20px;
 }
-.loginInReg{
-    margin-top: 20px;
+.loginInReg {
+  margin-top: 20px;
   cursor: pointer;
-  background-color: #000;
+  background-color: transparent;
   border: none;
-  color: white;
+  color: rgb(24, 190, 218);
+  text-decoration: underline;
   border-radius: 5px;
   padding: 10px 20px;
   font-weight: bold;
@@ -97,4 +99,5 @@
   position: absolute;
   top: 0;
   right: 20px;
+  font-size: 1.5rem;
 }
