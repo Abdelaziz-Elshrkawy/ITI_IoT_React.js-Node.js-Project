@@ -17,7 +17,7 @@ export const signUp = createAsyncThunk(
           },
         }
       );
-      console.log(singUpResponse);
+      console.log(form, singUpResponse);
       return singUpResponse.data;
     } catch (err) {
       console.log(err);
