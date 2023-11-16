@@ -1,20 +1,21 @@
 .header {
   position: relative;
-  background-image: url("https://img.freepik.com/free-photo/autumn-leaf-falling-revealing-intricate-leaf-vein-generated-by-ai_188544-9869.jpg?size=626&ext=jpg&ga=GA1.1.1518270500.1698796800&semt=ais");
+/*   background-image: url("https://img.freepik.com/free-photo/autumn-leaf-falling-revealing-intricate-leaf-vein-generated-by-ai_188544-9869.jpg?size=626&ext=jpg&ga=GA1.1.1518270500.1698796800&semt=ais"); */
   background-size: cover;
   background-position: center;
-  height: 450px;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #E1C78F;
+  color: rgb(24, 190, 218);
   font-family: "Lora", serif;
-  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8); /* Add shadow to the image */
+  /* box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.8);  *//* Add shadow to the image */
   position: relative;
 }
 
 /* Add the gradient overlay */
+/*
 .header::before {
   content: "";
   position: absolute;
@@ -22,14 +23,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(182, 160, 62, 0.212), rgba(0,0,0,0.6)); /* Adjust the gradient colors and opacity as needed */
+  background: linear-gradient(rgba(182, 160, 62, 0.212), rgba(0,0,0,0.6)); /* Adjust the gradient colors and opacity as needed 
 }
+*/
 
-.headerTitles {
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-  filter: drop-shadow(0 0 10px);
-  border-radius: 15px; /* Add text shadow for readability */
-}
 
 .headerTitleSm {
   font-size: 24px;

@@ -26,7 +26,7 @@ function App() {
                     path="/login"
                     element={user ? <Home /> : <Login />}
                 />
-                <Route exact path="/post/:id" element={<Single />} />
+                <Route exact path="/post" element={<Single />} />
                 <Route
                     exact
                     path="/write"

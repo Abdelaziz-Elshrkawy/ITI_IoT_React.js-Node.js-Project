@@ -2,8 +2,9 @@ import "./Register.css";
 import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { signUp } from "../Redux/userSlice";
-
+import { clearSignUpResponse, signUp } from "../Redux/userSlice";
+import Lottie from "lottie-react";
+import backGround from "../assets/Animation - 1700123428585.json";
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +12,6 @@ export default function Register() {
   const [profilePicture, setProfilePicture] = useState(null);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false);
   const imageRef = useRef(null);
   const { singUpResponse } = useSelector((stat) => stat.user.signup);
   const navigate = useNavigate();
@@ -19,36 +19,36 @@ export default function Register() {
   let newErrors;
   const validateForm = () => {
     newErrors = {};
-    setIsValid(true);
+    let isValid = true;
     if (name.trim() === "") {
       newErrors.name = "Name is required";
-      setIsValid(false);
+      isValid = false;
     }
     if (email.trim() === "") {
       newErrors.email = "Email is required";
-      setIsValid(false);
+      isValid = false;
     } else if (!/\S+@\S+\.com$/.test(email)) {
       newErrors.email = "Email is invalid";
-      setIsValid(false);
+      isValid = false;
     }
     if (password.trim() === "") {
       newErrors.password = "Password is required";
-      setIsValid(false);
+      isValid = false;
     } else if (password.length < 8) {
       newErrors.password = "Password should be more than 8 characters";
-      setIsValid(false);
+      isValid = false;
     }
     if (profilePicture === null) {
       newErrors.profileImage = "Profile image is required";
-      setIsValid(false);
+      isValid = false;
     }
     setErrors(newErrors);
+    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validateForm()
-    if (isValid) {
+    if (validateForm()) {
       dispatch(
         signUp({
           name,
@@ -60,16 +60,17 @@ export default function Register() {
     }
   };
   const handleFile = (e) => {
-    if(e.target.files[0].size < 209715.2){
-    const reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    // console.log(e.target.files[0]);
-    reader.onload = () => {
-      setProfilePicture(reader.result);
-    };
-  }else{
-    setErrors({profileImage: 'image size must be less than 200kb'})
-  }
+    if (e.target.files[0].size < 100000.2) {
+      const reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      // console.log(e.target.files[0]);
+      reader.onload = () => {
+        setProfilePicture(reader.result);
+      };
+      setErrors({ profileImage: "" });
+    } else {
+      setErrors({ profileImage: "image size must be less than 100kb" });
+    }
   };
 
   const checkUser = () => {
@@ -87,6 +88,7 @@ export default function Register() {
       setProfilePicture("");
       imageRef.current.value = null;
       navigate("/login");
+      dispatch(clearSignUpResponse());
     }
     // console.log(singUpResponse);
     // console.log(errors);
@@ -98,6 +100,7 @@ export default function Register() {
   }, [singUpResponse]);
   return (
     <div className="register">
+      <Lottie animationData={backGround} id="backGround" />
       <span className="registerTitle">Register</span>
       <form className="registerForm" onSubmit={handleSubmit}>
         <label>Name</label>
@@ -108,7 +111,6 @@ export default function Register() {
           placeholder="Enter Your Name...."
           onChange={(e) => setName(e.target.value)}
         />
-        {errors.name && <div className="error">{errors.name}</div>}
         <label>Email</label>
         <input
           className="registerInput"
@@ -117,7 +119,6 @@ export default function Register() {
           placeholder="Enter Your Email...."
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <div className="error">{errors.email}</div>}
         <label>Password</label>
         <input
           className="registerInput"
@@ -126,7 +127,6 @@ export default function Register() {
           placeholder="Enter Your Password...."
           onChange={(e) => setPassword(e.target.value)}
         />
-        {errors.password && <div className="error">{errors.password}</div>}
         <label>Profile Image</label>
         <input
           className="registerInput"
@@ -137,17 +137,30 @@ export default function Register() {
           onChange={handleFile}
         />
         <p></p>
-        {errors.profileImage && (
-          <div className="error">{errors.profileImage}</div>
-        )}
         <button className="registerButton">Register</button>
       </form>
       <Link to="/Login" className="link">
-        <button className="loginInReg">Login</button>
+        <button
+          onClick={() => dispatch(clearSignUpResponse())}
+          className="loginInReg"
+        >
+          Login
+        </button>
       </Link>
       <Link to="/" className="link">
-        <button className="backToHome">Back to Home</button>
+        <button
+          onClick={() => dispatch(clearSignUpResponse())}
+          className="backToHome"
+        >
+          Back to Home
+        </button>
       </Link>
+      {errors.name && <div className="error">{errors.name}</div>}
+      {errors.email && <div className="error">{errors.email}</div>}
+      {errors.password && <div className="error">{errors.password}</div>}
+      {errors.profileImage && (
+        <div className="error">{errors.profileImage}</div>
+      )}
       <p id="success">{errors.success}</p>
     </div>
   );
