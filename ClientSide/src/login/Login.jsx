@@ -4,6 +4,9 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../Redux/userSlice";
+import Lottie from "lottie-react";
+import backGround from "../assets/Animation - 1700123428585.json";
+
 export default function Login() {
   const [email, SetEmail] = useState(" ");
   const [password, SetPassword] = useState("");
@@ -71,10 +74,12 @@ export default function Login() {
     if (loginResponse && isMountedRef.current) {
       checkValidity();
     }
+    console.log(loginResponse);
     isMountedRef.current = true;
   }, [loginResponse]);
   return (
     <div className="login">
+      <Lottie animationData={backGround} id="backGround" />
       <span className="loginTitle">Login</span>
       <form className="loginForm" onSubmit={handleSubmit}>
         <label>Email</label>
