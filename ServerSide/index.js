@@ -16,6 +16,7 @@ app.use((err, req, res, next) => {
         next();
     }
 });
+
 app.use('/post', postRoute);
 app.use('/user', userRoute);
 app.listen(port, () => {
