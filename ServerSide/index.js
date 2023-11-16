@@ -11,8 +11,6 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/user', userRoute);
-app.use('/post', postRoute);
 app.use((err, req, res, next) => {
   if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
     res.status(400).send({ response: 'Invalid JSON format' });
@@ -20,6 +18,8 @@ app.use((err, req, res, next) => {
     next();
   }
 });
+app.use('/user', userRoute);
+app.use('/post', postRoute);
 app.listen(port, () => {
   console.log(`Running on: http://localhost:${port}`);
 });
