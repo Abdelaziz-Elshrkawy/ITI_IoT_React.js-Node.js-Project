@@ -4,12 +4,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
+/*   background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg");
+    url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg"); */
   background-size: cover;
 }
 
@@ -17,7 +17,7 @@
   font-size: 2rem;
   margin-bottom: 20px;
   font-weight: bold;
-  color: #706233;
+  color: #000;
 }
 
 .loginForm {
@@ -44,7 +44,7 @@
 .loginButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #706233;
+  background-color: #000;
   border: none;
   color: white;
   border-radius: 5px;
@@ -60,7 +60,7 @@
 .loginRegisterButton,
 .backToHome {
   position: absolute;
-  background-color: #b0926a;
+  background-color: #000;
   cursor: pointer;
   border: none;
   padding: 10px 20px;

@@ -1,8 +1,10 @@
 import { useEffect } from "react";
 import Post from "../post/Post";
 import "./posts.css";
+import lottieFile from "../../assets/pulse.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../../Redux/postSlice";
+import Lottie from "lottie-react";
 export default function Posts() {
   const dispatch = useDispatch();
   const { allPosts } = useSelector((state) => state.post);
@@ -31,7 +33,7 @@ export default function Posts() {
           <h1>No Posts yet :(</h1>
         )
       ) : (
-        "Loading....."
+        <Lottie animationData={lottieFile} loop id="loading" />
       )}
     </div>
   );

@@ -4,13 +4,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(
+  /* background: linear-gradient(
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5),
       rgba(255, 255, 255, 0.5)
     ),
-    url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg");
+    url("https://static8.depositphotos.com/1252474/1061/i/950/depositphotos_10619417-stock-photo-vintage-background-with-old-paper.jpg"); */
   background-size: cover;
+}
+
+#backGround{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: -1;
 }
 
 .registerTitle {
@@ -30,7 +37,7 @@
 .registerForm > label {
   margin: 10px 0;
   font-weight: bold;
-  color: #706233;
+  color: #000;
 }
 
 .registerInput {
@@ -44,7 +51,7 @@
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #706233;
+  background-color: #000;
   border: none;
   color: white;
   border-radius: 5px;
@@ -75,12 +82,12 @@
 .error {
   color: #9A3B3B;
   font-weight: bold;
-  margin-top: 5px;
+  margin-top: 20px;
 }
 .loginInReg{
     margin-top: 20px;
   cursor: pointer;
-  background-color: #b0926a;
+  background-color: #000;
   border: none;
   color: white;
   border-radius: 5px;
