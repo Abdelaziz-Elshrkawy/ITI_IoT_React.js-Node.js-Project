@@ -15,7 +15,6 @@ function App() {
         <Router>
             <Routes>
                 <Route exact path="/" element={<Home />} />
-                <Route exact path="/posts" element={<Home />} />
                 <Route
                     exact
                     path="/register"
@@ -26,7 +25,7 @@ function App() {
                     path="/login"
                     element={user ? <Home /> : <Login />}
                 />
-                <Route exact path="/post" element={<Single />} />
+                <Route exact path="/myposts" element={<Single />} />
                 <Route
                     exact
                     path="/write"

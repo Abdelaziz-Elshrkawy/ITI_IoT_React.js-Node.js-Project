@@ -53,7 +53,7 @@ export default function Write() {
     const userId = JSON.parse(localStorage.getItem("current_user"))?.user?._id;
     if (typeof token !== null && typeof userId !== null && validateForm()) {
       const data = { title, body, userId, postImage };
-      dispatch(addPost({ token, data }));
+      dispatch(addPost(data));
     }
   };
 

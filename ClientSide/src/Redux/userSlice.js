@@ -45,19 +45,24 @@ export const login = createAsyncThunk("/user/login", async (data, thunkAPI) => {
   }
 });
 
-export const auth = createAsyncThunk("/user/auth", async (token, thunkAPI) => {
+export const auth = createAsyncThunk("/user/auth", async (_, thunkAPI) => {
   try {
-    const loginResponse = await fetch(`${REACT_APP_SERVER_URL}/user/auth`, {
-      headers: {
-        "Content-Type": "application/json",
-        authorization: "Bearer " + token,
-      },
-    });
+    const loginResponse = await axios.post(
+      `${REACT_APP_SERVER_URL}/user/auth`,
+      JSON.stringify({auth:'auth'}),
+      {
+        headers: {
+          "Content-Type": "application/json",
+          authorization: "Bearer " + localStorage.getItem("current_token")
+        },
+      }
+    );
     const res = await loginResponse.json();
     console.log(res);
     return res;
   } catch (err) {
-    thunkAPI.rejectWithValue(err);
+    console.log(err)
+    return thunkAPI.rejectWithValue(err)
   }
 });
 
@@ -85,7 +90,10 @@ const userSlice = createSlice({
       state.login.loginResponse = action.payload;
     },
     [auth.fulfilled]: (state, action) => {
-      state.auth = action;
+      state.auth = action.payload;
+    },
+    [auth.rejected]: (state, action) => {
+      state.auth = action.payload;
     },
   },
 });

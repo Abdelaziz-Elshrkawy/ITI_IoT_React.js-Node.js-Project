@@ -7,15 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth } from '../../Redux/userSlice.js';
 
 export default function Home() {
-  const token = localStorage.getItem('current_token');
-  const dispatch = useDispatch()
-  const homeSelector = useSelector(stat => stat.user.auth)
-  console.log(token)
-  useEffect(() => {
-    if (token) {
-      dispatch(auth(token));
-    }
-  },[])
   return (
     <div className='home'>
       <TopBar />

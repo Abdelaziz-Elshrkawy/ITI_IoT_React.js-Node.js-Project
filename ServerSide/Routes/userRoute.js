@@ -45,11 +45,10 @@ userRoute.post('/login', async (req, res) => {
                 data && userLoginStatus.logged ? data : null;
             res.json(userLoginStatus);
         } else {
-            res.status(404).json({ userLoginStatus });
+            res.json({ userLoginStatus });
         }
-        res.json(userLoginStatus);
     } else {
-        res.status(202).json({ response: userLoginStatus });
+        res.json({ response: userLoginStatus });
     }
 });
 
@@ -60,6 +59,6 @@ userRoute.put('/:userid', async (req, res) => {
     res.json({ user });
 });
 
-userRoute.get('/auth', authorization);
+userRoute.post('/auth', authorization);
 
 export default userRoute;

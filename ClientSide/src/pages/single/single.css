@@ -1,4 +1,6 @@
 .single{
-    background-color: #fdf3e1;
+    margin: 30px;
     display: flex;
+    flex-direction: column;
+    row-gap: 50px;
 }

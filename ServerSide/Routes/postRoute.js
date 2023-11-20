@@ -50,9 +50,9 @@ postRoute.get(
 
 postRoute.delete('/:userid/:postid', authorization, async (req, res) => {
     const { userid, postid } = req.params;
+    console.log(req.params)
     const post = await posts.getPost(userid, postid);
     const deleteImage = await postImageMethods.deleteImage(post.imageId);
-    console.log(post.imageId);
     const deletePost = posts.deletePost(post._id);
     console.log(`${JSON.stringify(deleteImage)} ::: ${deletePost}`);
     if (post && post.deletedCount === 1) {
@@ -66,6 +66,8 @@ postRoute.put('/:userid/:postid', authorization, async (req, res) => {
     try {
         const { title, body } = req.body;
         const { userid, postid } = req.params;
+        console.log(req.params);
+        console.log(req.body);
         const post = await posts.updatePost(userid, postid, title, body);
         if (post.message) {
             res.json({ response: post.message });

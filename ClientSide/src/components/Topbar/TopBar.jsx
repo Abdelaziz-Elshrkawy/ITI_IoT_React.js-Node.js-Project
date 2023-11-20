@@ -67,8 +67,13 @@ export default function TopBar() {
             </li>
           </ul>
         )}
-        <div onClick={handleLogout} className="logout-cont">
-          <span className="logout">{userData.logged && "LOGOUT"}</span>
+        <div className="logout-cont">
+          <Link to='/myposts' className="link">
+          <span className="logout">My Posts</span>
+          </Link>
+          <span onClick={handleLogout} className="logout">
+            Logout
+          </span>
         </div>
         {/* <i className="topSearchIcon fa-solid fa-magnifying-glass"></i> */}
       </div>

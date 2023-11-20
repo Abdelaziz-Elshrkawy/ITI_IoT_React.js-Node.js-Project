@@ -19,12 +19,10 @@ const authorization = (req, res, next) => {
         const token = req.headers.authorization?.split(' ');
         if (token) {
             jsonwebtoken.verify(token[1], jwt_secret);
-        } else {
-            throw new Error('Something went wrong');
         }
         next();
     } catch (err) {
-        res.status(401).json({ response: err.message || 'not authorized' });
+        res.json({ response: err.message || 'not authorized' });
     }
 };
 
