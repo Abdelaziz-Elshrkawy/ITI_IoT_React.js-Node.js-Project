@@ -8,6 +8,7 @@ const users = new UsersMethods('Users');
 const userImage = new ImageMethods('users-image');
 
 userRoute.post('/', async (req, res) => {
+
     try {
         console.log(req.body);
         const { name, email, password, profilePicture } = req.body;
