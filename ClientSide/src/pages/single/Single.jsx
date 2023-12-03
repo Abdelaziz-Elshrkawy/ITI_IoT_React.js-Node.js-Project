@@ -11,13 +11,17 @@ import PopUp from "../../components/PopUp/PopUp";
 
 export default function Single() {
   const { userPosts } = useSelector((state) => state.post);
-  const [trigger,setTrigger] = useState(true)
+  const [trigger, setTrigger] = useState(true);
   console.log(userPosts);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   useEffect(() => {
     dispatch(getUserPosts());
-    console.log('triggered')
+    console.log("triggered");
+    if (userPosts?.response === "jwt expired") {
+      localStorage.clear();
+      navigate("/login");
+    }
   }, [trigger]);
   return (
     <>
@@ -26,7 +30,7 @@ export default function Single() {
         {typeof userPosts?.response === "object" ? (
           userPosts?.response?.length > 0 ? (
             userPosts.response.map((e, i) => {
-              console.log(e)
+              console.log(e);
               return (
                 <SinglePost
                   key={i}
