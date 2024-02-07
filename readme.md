@@ -1,6 +1,6 @@
 # ITI_IoT_React.js-Node.js-Project
-## [Live Demo](https://83ed8c9f-1e5b-48e4-95a7-26afb3523a62-00-106zw5jracvqe.riker.replit.dev/)
-## [server link](https://b7876559-8c1b-451b-b7f2-dc4462ce5b2e-00-3fwxo04lqrwdx.janeway.replit.dev/) 
+## [Live Demo](https://iot-graduation-project-client.onrender.com)
+## [server link](https://iot-graduation-project.onrender.com) 
 This is MERN Stack Blog application.
 
 Features:
